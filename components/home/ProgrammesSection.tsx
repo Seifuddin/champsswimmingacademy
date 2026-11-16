@@ -1,97 +1,106 @@
 
+import Image from "next/image";
 import Link from "next/link";
-import {
-  ArrowRight,
-  ArrowUpRight,
-  Baby,
-  Waves,
-  Activity,
-  Gauge,
-  Trophy,
-} from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 const programmes = [
   {
     number: "01",
-    title: "Baby & Toddler Swimming",
-    level: "EARLY WATER EXPERIENCE",
+    title: "Beginner Swimming",
     description:
-      "Gentle, age-appropriate water experiences that introduce little ones to the aquatic environment.",
-    icon: Baby,
-    featured: false,
+      "Build water confidence and master the fundamentals, from floating and breathing to swimming independently.",
+    image: "/images/programmes/beginner.jpg",
+    alt: "Beginner learning swimming with an instructor",
+    className: "md:col-span-2",
   },
   {
     number: "02",
-    title: "Beginner Swimming",
-    level: "START YOUR JOURNEY",
+    title: "Children's Swimming",
     description:
-      "Build water confidence and learn essential swimming fundamentals, including floating, breathing and movement.",
-    icon: Waves,
-    featured: true,
+      "Fun, supportive lessons that help children develop water confidence, coordination and essential swimming skills.",
+    image: "/images/programmes/children.jpeg",
+    alt: "Children enjoying a swimming lesson",
+    className: "",
   },
   {
     number: "03",
-    title: "Intermediate Swimming",
-    level: "BUILD YOUR SKILLS",
+    title: "Adult Swimming",
     description:
-      "Improve swimming technique, coordination and endurance while developing greater independence in the water.",
-    icon: Activity,
-    featured: false,
+      "Patient, personalised instruction for adults learning to swim or building confidence in the water.",
+    image: "/images/programmes/adult.avif",
+    alt: "Adult practising swimming",
+    className: "",
   },
   {
     number: "04",
-    title: "Advanced Swimming",
-    level: "REFINE YOUR TECHNIQUE",
+    title: "Technique Improvement",
     description:
-      "Develop stronger technique, improve efficiency and refine your swimming abilities through focused instruction.",
-    icon: Gauge,
-    featured: false,
+      "Refine freestyle, backstroke, breaststroke and butterfly through focused technique development.",
+    image: "/images/programmes/butterfly.avif",
+    alt: "Swimmer practising swimming technique",
+    className: "",
   },
   {
     number: "05",
-    title: "Competitive Swimming",
-    level: "PURSUUE EXCELLENCE",
+    title: "Private Swimming Lessons",
     description:
-      "For swimmers interested in developing their performance, competitive skills and potential in the sport.",
-    icon: Trophy,
-    featured: false,
+      "One-on-one coaching tailored to your individual goals, ability and learning pace.",
+    image: "/images/programmes/private.webp",
+    alt: "Swimming instructor providing individual coaching",
+    className: "",
+  },
+  {
+    number: "06",
+    title: "Residential Swimming Lessons",
+    description:
+      "Professional swimming instruction at suitable residential pools, subject to location and facility suitability.",
+    image: "/images/programmes/residential.jpeg",
+    alt: "Residential swimming pool",
+    className: "",
+  },
+  {
+    number: "07",
+    title: "Water Safety & Survival",
+    description:
+      "Learn essential water safety, floating, controlled breathing and basic survival skills.",
+    image: "/images/programmes/safety.jpg",
+    alt: "Swimmer practising water safety skills",
+    className: "",
   },
 ];
 
 export default function ProgrammesSection() {
   return (
-    <section className="bg-[#EAF7FB] py-20 sm:py-24">
+    <section className="bg-[#F7FBFC] py-14 sm:py-16 lg:py-20">
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
 
-        {/* Section Heading */}
-        <div className="mb-12 flex flex-col justify-between gap-6 lg:mb-14 lg:flex-row lg:items-end">
+        {/* Section heading */}
+        <div className="mb-8 flex flex-col justify-between gap-5 sm:mb-10 lg:flex-row lg:items-end">
           <div className="max-w-2xl">
-            <div className="mb-5 flex items-center gap-3">
-              <span className="h-[2px] w-9 bg-[#22B8C7]" />
-              <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#087EAB]">
-                Our Programmes
+            <div className="mb-3 flex items-center gap-3">
+              <span className="h-[2px] w-8 bg-[#22B8C7]" />
+              <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#087EAB]">
+                What We Offer
               </span>
             </div>
 
-            <h2 className="text-3xl font-black leading-tight tracking-tight text-[#082F49] sm:text-4xl lg:text-[2.8rem]">
-              A Swimming Journey
-              <span className="block text-[#087EAB]">
-                For Every Ability.
-              </span>
+            <h2 className="text-3xl font-black leading-tight tracking-tight text-[#082F49] sm:text-4xl lg:text-[2.65rem]">
+              Swimming for Every
+              <span className="text-[#087EAB]"> Stage of Life.</span>
             </h2>
 
-            <p className="mt-5 max-w-xl text-base leading-8 text-slate-600">
-              From first experiences in the water to advanced skill
-              development, discover a programme that matches your swimming
-              journey.
+            <p className="mt-3 max-w-xl text-sm leading-6 text-[#647B89] sm:text-base">
+              From first-time swimmers to those refining their technique,
+              we offer personalised instruction to help everyone grow
+              confidently in the water.
             </p>
           </div>
 
           <Link
             href="/programmes"
-            className="group inline-flex w-fit items-center gap-2 border-b border-[#087EAB]/30 pb-2 text-sm font-bold text-[#087EAB] transition-colors hover:border-[#082F49] hover:text-[#082F49]"
+            className="group inline-flex w-fit shrink-0 items-center gap-2 border-b border-[#087EAB]/30 pb-1.5 text-sm font-bold text-[#087EAB] transition-colors hover:border-[#082F49] hover:text-[#082F49]"
           >
-            View All Programmes
+            Explore All Services
             <ArrowUpRight
               size={17}
               className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
@@ -99,123 +108,69 @@ export default function ProgrammesSection() {
           </Link>
         </div>
 
-        {/* Programme Grid */}
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-6">
-          {programmes.map((programme) => {
-            const Icon = programme.icon;
+        {/* Image programme grid */}
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
 
-            return (
-              <Link
-                key={programme.number}
-                href="/programmes"
-                className={`group relative flex min-h-[275px] flex-col overflow-hidden rounded-2xl border p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-[#082F49]/10 sm:p-7 lg:col-span-2 ${
-                  programme.featured
-                    ? "border-[#087EAB] bg-[#082F49] text-white"
-                    : "border-white bg-white text-[#082F49]"
-                } ${
-                  programme.number === "04"
-                    ? "lg:col-start-2"
-                    : ""
-                }`}
-              >
-                {/* Card Header */}
-                <div className="flex items-start justify-between">
-                  <div
-                    className={`flex h-12 w-12 items-center justify-center rounded-xl ${
-                      programme.featured
-                        ? "bg-white/10 text-[#7DE5EC]"
-                        : "bg-[#EAF7FB] text-[#087EAB]"
-                    }`}
-                  >
-                    <Icon size={24} strokeWidth={1.8} />
+          {programmes.map((programme) => (
+            <Link
+              key={programme.number}
+              href="/programmes"
+              className={`group relative isolate h-[230px] overflow-hidden rounded-xl bg-[#082F49] sm:h-[245px] ${programme.className}`}
+            >
+              {/* Background image */}
+              <Image
+                src={programme.image}
+                alt={programme.alt}
+                fill
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+
+              {/* Image overlays */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#031D2D]/95 via-[#031D2D]/20 to-transparent" />
+              <div className="absolute inset-0 bg-[#082F49]/5 transition-colors duration-300 group-hover:bg-[#082F49]/15" />
+
+              {/* Number */}
+              <span className="absolute right-4 top-4 text-[11px] font-bold tracking-[0.15em] text-white/75">
+                {programme.number}
+              </span>
+
+              {/* Bottom content */}
+              <div className="absolute inset-x-0 bottom-0 p-5 sm:p-5">
+                <div className="mb-2 h-[2px] w-7 bg-[#22B8C7] transition-all duration-300 group-hover:w-12" />
+
+                <div className="flex items-end justify-between gap-3">
+                  <div>
+                    <h3 className="text-lg font-extrabold leading-snug text-white sm:text-xl">
+                      {programme.title}
+                    </h3>
+
+                    <p className="mt-1.5 max-w-md text-xs leading-[1.65] text-white/80 sm:text-[13px]">
+                      {programme.description}
+                    </p>
                   </div>
 
-                  <span
-                    className={`text-xs font-bold tracking-widest ${
-                      programme.featured
-                        ? "text-white/40"
-                        : "text-slate-300"
-                    }`}
-                  >
-                    {programme.number}
+                  <span className="mb-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/40 text-white transition-all duration-300 group-hover:border-[#22B8C7] group-hover:bg-[#22B8C7]">
+                    <ArrowUpRight size={16} />
                   </span>
                 </div>
+              </div>
+            </Link>
+          ))}
 
-                {/* Card Content */}
-                <div className="mt-8">
-                  <p
-                    className={`text-[10px] font-bold tracking-[0.16em] ${
-                      programme.featured
-                        ? "text-[#7DE5EC]"
-                        : "text-[#087EAB]"
-                    }`}
-                  >
-                    {programme.level}
-                  </p>
-
-                  <h3 className="mt-3 text-xl font-extrabold leading-snug">
-                    {programme.title}
-                  </h3>
-
-                  <p
-                    className={`mt-3 text-sm leading-7 ${
-                      programme.featured
-                        ? "text-slate-300"
-                        : "text-slate-500"
-                    }`}
-                  >
-                    {programme.description}
-                  </p>
-                </div>
-
-                {/* Card Footer */}
-                <div
-                  className={`mt-auto flex items-center justify-between border-t pt-5 ${
-                    programme.featured
-                      ? "border-white/15"
-                      : "border-slate-100"
-                  }`}
-                >
-                  <span
-                    className={`text-xs font-bold ${
-                      programme.featured
-                        ? "text-white"
-                        : "text-[#087EAB]"
-                    }`}
-                  >
-                    Explore Programme
-                  </span>
-
-                  <ArrowRight
-                    size={17}
-                    className={`transition-transform group-hover:translate-x-1 ${
-                      programme.featured
-                        ? "text-[#7DE5EC]"
-                        : "text-[#087EAB]"
-                    }`}
-                  />
-                </div>
-              </Link>
-            );
-          })}
         </div>
 
-        {/* Bottom Note */}
-        <div className="mt-10 flex flex-col items-start justify-between gap-4 rounded-2xl border border-[#087EAB]/10 bg-white/70 px-6 py-5 sm:flex-row sm:items-center sm:px-8">
-          <div>
-            <h3 className="font-bold text-[#082F49]">
-              Not sure where to begin?
-            </h3>
-            <p className="mt-1 text-sm text-slate-500">
-              Talk to our team and find a suitable programme for your goals.
-            </p>
-          </div>
+        {/* Bottom enquiry link */}
+        <div className="mt-7 flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-center">
+          <p className="text-sm text-[#647B89]">
+            Not sure which lesson is right for you? Let us help you choose.
+          </p>
 
           <Link
             href="/contact"
-            className="inline-flex shrink-0 items-center gap-2 rounded-full bg-[#087EAB] px-5 py-3 text-sm font-bold text-white transition-colors hover:bg-[#082F49]"
+            className="inline-flex items-center gap-2 text-sm font-bold text-[#087EAB] transition-colors hover:text-[#082F49]"
           >
-            Enquire Now
+            Talk to our team
             <ArrowUpRight size={16} />
           </Link>
         </div>
