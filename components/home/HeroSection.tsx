@@ -1,150 +1,128 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import {
-  ArrowRight,
-  ArrowUpRight,
-  CheckCircle2,
-  Waves,
-} from "lucide-react";
-
-const highlights = [
-  "Professional swimming instruction",
-  "Programmes for all ages and skill levels",
-  "A journey built around your progress",
-];
+import { ArrowRight, ArrowUpRight, Waves } from "lucide-react";
 
 export default function HeroSection() {
   return (
-    <section className="relative overflow-hidden bg-white">
-      <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 py-12 sm:px-8 sm:py-16 lg:grid-cols-[1fr_0.95fr] lg:gap-14 lg:px-10 lg:py-20">
+    <section className="relative isolate flex min-h-[620px] items-center overflow-hidden bg-[#052438] sm:min-h-[660px] lg:min-h-[680px]">
 
-        {/* Hero Content */}
-        <div className="relative z-10 max-w-2xl">
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#22B8C7]/30 bg-[#EAF7FB] px-4 py-2">
-            <Waves size={15} className="text-[#087EAB]" />
-            <span className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#087EAB]">
-              Where Champions Begin
+      {/* Background photograph */}
+      <Image
+        src="/images/hero.jpg"
+        alt="Swimmers training in a swimming pool"
+        fill
+        priority
+        sizes="100vw"
+        className="object-cover object-center"
+      />
+
+      {/* Cinematic overlays */}
+      <div className="absolute inset-0 -z-0 bg-gradient-to-r from-[#031D2D]/45 via-[#052438]/45 to-[#052438]/20" />
+      <div className="absolute inset-0 -z-0 bg-gradient-to-t from-[#031D2D]/45 via-transparent to-[#031D2D]/15" />
+
+      {/* Aquatic accent */}
+      <div className="absolute bottom-0 left-0 right-0 -z-0 h-[3px] bg-gradient-to-r from-[#087EAB] via-[#22B8C7] to-transparent" />
+
+      {/* Content */}
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-5 py-20 sm:px-8 sm:py-24 lg:px-10 lg:py-28">
+
+        <div className="max-w-3xl">
+
+          {/* Eyebrow */}
+          <div className="mb-5 flex items-center gap-3 sm:mb-6">
+            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#7DE5EC]/40 bg-white/10 text-[#7DE5EC] backdrop-blur-sm">
+              <Waves size={17} />
+            </span>
+
+            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#7DE5EC] sm:text-xs sm:tracking-[0.24em]">
+              Champs Swimming Academy
             </span>
           </div>
 
-          <h1 className="text-4xl font-black leading-[1.12] tracking-tight text-[#082F49] sm:text-5xl lg:text-[3.65rem]">
+          {/* Heading */}
+          <h1 className="max-w-3xl text-[2.75rem] font-black leading-[1.04] tracking-tight text-white sm:text-6xl lg:text-[4.6rem]">
             Discover the
-            <span className="block text-[#087EAB]">
-              Champion
+            <span className="block text-[#55D2DE]">
+              Champion Within You.
             </span>
-            Within You.
           </h1>
 
-          <p className="mt-6 max-w-xl text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
-            Every great swimmer starts somewhere. Whether you're introducing
-            your child to the water, learning to swim for the first time or
-            developing advanced swimming skills, we're here to guide your
-            journey.
+          {/* Description */}
+          <p className="mt-5 max-w-xl text-[15px] leading-7 text-white/85 sm:mt-6 sm:text-lg sm:leading-8">
+            From first strokes to confident swimming, we provide
+            professional, personalised lessons that help children
+            and adults build skills, overcome challenges and
+            discover their potential in the water.
           </p>
 
-          {/* Highlights */}
-          <div className="mt-7 space-y-3">
-            {highlights.map((item) => (
-              <div key={item} className="flex items-center gap-3">
-                <CheckCircle2
-                  size={18}
-                  className="shrink-0 text-[#22B8C7]"
-                />
-                <span className="text-sm font-medium text-[#19394B]">
-                  {item}
-                </span>
-              </div>
-            ))}
-          </div>
-
           {/* Buttons */}
-          <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+          <div className="mt-7 flex flex-col items-start gap-3 min-[420px]:flex-row sm:mt-8">
+
             <Link
               href="/contact"
-              className="group inline-flex items-center justify-center gap-3 rounded-full bg-[#087EAB] px-7 py-4 text-sm font-bold text-white shadow-lg shadow-[#087EAB]/15 transition-all hover:-translate-y-0.5 hover:bg-[#082F49]"
+              className="group inline-flex min-h-11 w-full items-center justify-center gap-2.5 rounded-full bg-[#087EAB] px-5 py-3 text-[13px] font-bold text-white transition-all duration-300 hover:bg-[#22B8C7] hover:text-[#052438] min-[420px]:w-auto sm:px-6 sm:text-sm"
             >
-              Start Your Swimming Journey
-              <ArrowUpRight size={18} />
+              Start Your Journey
+              <ArrowUpRight
+                size={17}
+                className="shrink-0 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              />
             </Link>
 
             <Link
               href="/programmes"
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-200 px-7 py-4 text-sm font-bold text-[#082F49] transition-colors hover:border-[#22B8C7] hover:bg-[#EAF7FB]"
+              className="group inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-full border border-white/40 bg-white/10 px-5 py-3 text-[13px] font-bold text-white backdrop-blur-sm transition-all hover:border-white hover:bg-white/20 min-[420px]:w-auto sm:px-6 sm:text-sm"
             >
               Explore Programmes
-              <ArrowRight size={17} />
+              <ArrowRight
+                size={16}
+                className="shrink-0 transition-transform group-hover:translate-x-1"
+              />
             </Link>
+
           </div>
 
-          {/* Audience */}
-          <div className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-slate-100 pt-6">
-            <div>
-              <p className="text-sm font-extrabold text-[#082F49]">All Ages</p>
-              <p className="mt-1 text-xs text-slate-500">Children & Adults</p>
-            </div>
-
-            <div className="h-9 w-px bg-slate-200" />
-
-            <div>
-              <p className="text-sm font-extrabold text-[#082F49]">All Levels</p>
-              <p className="mt-1 text-xs text-slate-500">Beginner to Advanced</p>
-            </div>
-
-            <div className="h-9 w-px bg-slate-200" />
-
-            <div>
-              <p className="text-sm font-extrabold text-[#082F49]">Professional</p>
-              <p className="mt-1 text-xs text-slate-500">Guided Instruction</p>
-            </div>
+          {/* Supporting statement */}
+          <div className="mt-8 flex items-center gap-3 sm:mt-10">
+            <span className="h-px w-9 bg-[#22B8C7]" />
+            <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-white/70 sm:text-xs sm:tracking-[0.18em]">
+              Where Champions Begin
+            </p>
           </div>
         </div>
 
-        {/* Hero Image */}
-        <div className="relative mx-auto w-full max-w-[560px] lg:max-w-none">
-          <div className="absolute -right-5 -top-5 h-40 w-40 rounded-full bg-[#22B8C7]/15 blur-3xl" />
+        {/* Bottom information */}
+        <div className="mt-10 grid max-w-3xl grid-cols-3 border-t border-white/20 pt-5 sm:mt-14 sm:pt-7">
 
-          <div className="relative aspect-[4/4.4] overflow-hidden rounded-[2rem] bg-[#082F49] shadow-2xl shadow-[#082F49]/15">
-            <Image
-              src="/images/hero.jpg"
-              alt="Swimmer training in a swimming pool"
-              fill
-              priority
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              className="object-cover"
-            />
-
-            <div className="absolute inset-0 bg-gradient-to-t from-[#052438]/70 via-transparent to-transparent" />
-
-            <div className="absolute bottom-0 left-0 right-0 p-7 sm:p-9">
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#7DE5EC]">
-                Every Stroke Matters
-              </p>
-              <h2 className="mt-2 max-w-sm text-2xl font-extrabold leading-tight text-white sm:text-3xl">
-                Building confidence. Creating possibilities.
-              </h2>
-            </div>
+          <div className="pr-2 sm:pr-3">
+            <p className="text-base font-extrabold text-white sm:text-lg">
+              All Ages
+            </p>
+            <p className="mt-1 text-[10px] leading-4 text-white/70 sm:text-xs">
+              Children & Adults
+            </p>
           </div>
 
-          {/* Floating Information */}
-          <div className="absolute -bottom-5 -left-3 rounded-2xl border border-slate-100 bg-white p-4 shadow-xl sm:-left-7 sm:p-5">
-            <div className="flex items-center gap-3">
-              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#EAF7FB]">
-                <Waves size={23} className="text-[#087EAB]" />
-              </div>
-
-              <div>
-                <p className="text-sm font-extrabold text-[#082F49]">
-                  Your Journey Starts Here
-                </p>
-                <p className="mt-1 text-xs text-slate-500">
-                  Learn. Improve. Achieve.
-                </p>
-              </div>
-            </div>
+          <div className="border-l border-white/20 px-3 sm:px-6">
+            <p className="text-base font-extrabold text-white sm:text-lg">
+              All Levels
+            </p>
+            <p className="mt-1 text-[10px] leading-4 text-white/70 sm:text-xs">
+              Beginner to Advanced
+            </p>
           </div>
+
+          <div className="border-l border-white/20 pl-3 sm:pl-6">
+            <p className="text-base font-extrabold text-white sm:text-lg">
+              Personalised
+            </p>
+            <p className="mt-1 text-[10px] leading-4 text-white/70 sm:text-xs">
+              Guided Instruction
+            </p>
+          </div>
+
         </div>
-
       </div>
     </section>
   );
