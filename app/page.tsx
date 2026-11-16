@@ -31,7 +31,6 @@ export default function Home() {
           <FAQSection />
         </div>
 
-        <FinalCTA />
       </main>
 
       <Footer />
