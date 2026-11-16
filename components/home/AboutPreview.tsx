@@ -9,108 +9,104 @@ import {
 
 const values = [
   {
+    number: "01",
     icon: ShieldCheck,
     title: "Confidence & Safety",
     description:
-      "Helping learners become comfortable, capable and confident in the water.",
+      "Developing water confidence, essential swimming abilities and safety awareness.",
   },
   {
+    number: "02",
     icon: Target,
-    title: "Structured Learning",
+    title: "Purposeful Learning",
     description:
-      "Progressive instruction designed around individual abilities and goals.",
+      "Guidance shaped around each swimmer's experience, ability and goals.",
   },
   {
+    number: "03",
     icon: TrendingUp,
-    title: "Continuous Growth",
+    title: "Personal Growth",
     description:
-      "Supporting every swimmer as they develop skills and reach new milestones.",
+      "Helping every learner build skills, overcome challenges and progress.",
   },
 ];
 
 export default function AboutPreview() {
   return (
-    <section className="bg-white py-20 sm:py-24">
+    <section className="bg-white py-12 sm:py-14 lg:py-16">
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
 
-        <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-start lg:gap-20">
+        {/* Introduction */}
+        <div className="grid items-end gap-6 border-b border-[#E5EEF1] pb-8 lg:grid-cols-[1.1fr_0.9fr] lg:gap-12 lg:pb-9">
 
-          {/* Section Introduction */}
           <div>
-            <div className="mb-5 flex items-center gap-3">
-              <span className="h-[2px] w-9 bg-[#22B8C7]" />
-              <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#087EAB]">
-                About Champs
+            <div className="mb-4 flex items-center gap-2.5">
+              <span className="h-[2px] w-7 bg-[#22B8C7]" />
+              <span className="text-[10px] font-extrabold uppercase tracking-[0.2em] text-[#087EAB]">
+                Get to Know Champs
               </span>
             </div>
 
-            <h2 className="max-w-lg text-3xl font-black leading-tight tracking-tight text-[#082F49] sm:text-4xl lg:text-[2.8rem]">
+            <h2 className="max-w-2xl text-[2rem] font-black leading-[1.12] tracking-tight text-[#082F49] sm:text-4xl lg:text-[3.15rem]">
               More Than Swimming.
               <span className="block text-[#087EAB]">
                 A Skill for Life.
               </span>
             </h2>
+          </div>
 
-            <p className="mt-6 max-w-md text-base leading-8 text-slate-600">
-              Swimming is more than a sport. It is an essential life skill
-              that builds confidence, encourages discipline and creates
-              opportunities for personal growth.
-            </p>
-
-            <p className="mt-4 max-w-md text-base leading-8 text-slate-600">
-              At Champs Swimming Academy, we guide learners of all ages
-              through a structured swimming journey, helping each individual
-              develop their abilities and discover their potential.
+          <div className="lg:pb-1">
+            <p className="max-w-xl text-[14px] leading-7 text-[#647B89] sm:text-[15px]">
+              At Champs Swimming Academy, we believe swimming is more
+              than a sport. It is a life skill that builds confidence,
+              develops discipline and opens doors to new possibilities.
             </p>
 
             <Link
               href="/about"
-              className="group mt-8 inline-flex items-center gap-2 text-sm font-bold text-[#087EAB] transition-colors hover:text-[#082F49]"
+              className="group mt-4 inline-flex items-center gap-2 text-[13px] font-extrabold text-[#087EAB] transition-colors hover:text-[#052438]"
             >
               Discover Our Academy
               <ArrowUpRight
-                size={17}
-                className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                size={16}
+                className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
               />
             </Link>
           </div>
+        </div>
 
-          {/* Academy Values */}
-          <div className="divide-y divide-slate-100 border-y border-slate-100">
-            {values.map((value, index) => {
-              const Icon = value.icon;
+        {/* Academy Values */}
+        <div className="grid gap-0 sm:grid-cols-3 sm:divide-x sm:divide-[#E5EEF1]">
 
-              return (
-                <div
-                  key={value.title}
-                  className="group flex gap-5 py-7 sm:gap-7"
-                >
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#EAF7FB] transition-colors group-hover:bg-[#087EAB]">
-                    <Icon
-                      size={23}
-                      className="text-[#087EAB] transition-colors group-hover:text-white"
-                    />
-                  </div>
+          {values.map((value) => {
+            const Icon = value.icon;
 
-                  <div className="flex-1">
-                    <div className="flex items-center justify-between gap-3">
-                      <h3 className="text-lg font-extrabold text-[#082F49]">
-                        {value.title}
-                      </h3>
-
-                      <span className="text-xs font-bold tracking-widest text-slate-300">
-                        0{index + 1}
-                      </span>
-                    </div>
-
-                    <p className="mt-2 max-w-lg text-sm leading-7 text-slate-500">
-                      {value.description}
-                    </p>
-                  </div>
+            return (
+              <article
+                key={value.number}
+                className="group flex gap-4 border-b border-[#E5EEF1] py-5 first:pt-6 last:border-b-0 sm:border-b-0 sm:px-5 sm:py-6 sm:first:pl-0 sm:last:pr-0 lg:gap-4 lg:py-7"
+              >
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#EAF7FB] text-[#087EAB] transition-colors duration-300 group-hover:bg-[#087EAB] group-hover:text-white">
+                  <Icon size={19} strokeWidth={1.8} />
                 </div>
-              );
-            })}
-          </div>
+
+                <div className="min-w-0">
+                  <div className="mb-1 flex items-center gap-2">
+                    <span className="text-[9px] font-extrabold tracking-[0.15em] text-[#22B8C7]">
+                      {value.number}
+                    </span>
+                    <h3 className="text-[14px] font-extrabold text-[#082F49] sm:text-[15px]">
+                      {value.title}
+                    </h3>
+                  </div>
+
+                  <p className="max-w-xs text-[12px] leading-[1.8] text-[#647B89] sm:text-[13px]">
+                    {value.description}
+                  </p>
+                </div>
+              </article>
+            );
+          })}
 
         </div>
       </div>

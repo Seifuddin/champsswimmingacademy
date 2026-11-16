@@ -20,10 +20,11 @@ export default function Home() {
 
       <main>
         <HeroSection />
+        <AboutPreview />
+        <CoachesSection />
         <ProgrammesSection />
         <LearningJourney />
         <WhyChooseUs />
-        <CoachesSection />
         <GallerySection />
         <Testimonials />
 
