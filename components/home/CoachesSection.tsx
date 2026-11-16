@@ -92,7 +92,7 @@ export default function CoachesSection() {
             </p>
 
             {/* Coaching highlights */}
-            <div className="mt-6 grid gap-4 border-y border-[#DCE9ED] py-5 sm:grid-cols-3 sm:gap-3">
+            <div className="hidden mt-6 md:grid gap-4 border-y border-[#DCE9ED] py-5 sm:grid-cols-3 sm:gap-3">
               {coachingPillars.map((pillar) => {
                 const Icon = pillar.icon;
 

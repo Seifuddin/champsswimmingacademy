@@ -76,7 +76,7 @@ export default function AboutPreview() {
         </div>
 
         {/* Academy Values */}
-        <div className="grid gap-0 sm:grid-cols-3 sm:divide-x sm:divide-[#E5EEF1]">
+        <div className="hidden md:grid gap-0 sm:grid-cols-3 sm:divide-x sm:divide-[#E5EEF1]">
 
           {values.map((value) => {
             const Icon = value.icon;
