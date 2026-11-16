@@ -20,7 +20,6 @@ export default function Home() {
 
       <main>
         <HeroSection />
-        <AboutPreview />
         <ProgrammesSection />
         <LearningJourney />
         <WhyChooseUs />

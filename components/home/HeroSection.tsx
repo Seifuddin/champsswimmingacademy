@@ -106,7 +106,7 @@ export default function HeroSection() {
 
           <div className="relative aspect-[4/4.4] overflow-hidden rounded-[2rem] bg-[#082F49] shadow-2xl shadow-[#082F49]/15">
             <Image
-              src="/images/hero-swimming.jpg"
+              src="/images/hero.jpg"
               alt="Swimmer training in a swimming pool"
               fill
               priority

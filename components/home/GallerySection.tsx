@@ -9,25 +9,25 @@ import {
 
 const gallery = [
   {
-    src: "/images/gallery-pool.jpg",
+    src: "/images/images.jpeg",
     alt: "Swimming pool and training environment",
     label: "The Environment",
     className: "md:col-span-2 md:row-span-2",
   },
   {
-    src: "/images/gallery-coaching.jpg",
+    src: "/images/coach.webp",
     alt: "Swimming coaching session",
     label: "Professional Guidance",
     className: "",
   },
   {
-    src: "/images/gallery-training.jpg",
+    src: "/images/sessions.jpeg",
     alt: "Swimming training session",
     label: "Learning in Action",
     className: "",
   },
   {
-    src: "/images/gallery-swimmers.jpg",
+    src: "/images/swimmers.webp",
     alt: "Swimmers developing their abilities",
     label: "Every Stage Matters",
     className: "md:col-span-2",

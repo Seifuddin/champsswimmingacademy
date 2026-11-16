@@ -37,7 +37,7 @@ export default function CoachesSection() {
           <div className="relative">
             <div className="relative aspect-[5/4] overflow-hidden rounded-[1.75rem] bg-[#082F49]">
               <Image
-                src="/images/coaching-session.jpg"
+                src="/images/swimmers.jpg"
                 alt="Swimming instruction and coaching session"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
