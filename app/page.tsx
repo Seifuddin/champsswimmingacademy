@@ -19,26 +19,21 @@ import HomeBlogSection from "@/components/blog/HomeBlogSection";
 export default function Home() {
   return (
     <>
-      <Navbar />
-
       <main>
         <HeroSection />
         <EnrolmentCTA />
-        <StatsCounter />
         <ProgrammesSection />
-        <LearningJourney />
-        <CoachesSection />
+        <StatsCounter />
         <WhyChooseUs />
         <GallerySection />
 
         <div id="faqs">
           <FAQSection />
         </div>
+        <CoachesSection />
         <HomeBlogSection />
 
       </main>
-
-      <Footer />
     </>
   );
 }
