@@ -52,7 +52,7 @@ const reasons = [
 
 export default function WhyChooseUs() {
   return (
-    <section className="overflow-hidden bg-white py-10 sm:py-12 lg:py-14">
+    <section className="overflow-hidden bg-white py-20 sm:py-20 lg:py-20">
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
 
         {/* Section heading */}
@@ -124,8 +124,8 @@ export default function WhyChooseUs() {
                 const Icon = reason.icon;
 
                 return (
-                  <div key={reason.title} className="group flex items-start gap-3">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#EAF6F9] text-[#087EAB] transition-colors duration-300 group-hover:bg-[#087EAB] group-hover:text-white">
+                  <div key={reason.title} className="group flex items-start gap-3 border-b border-gray-100 p-1 rounded-md">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md border border-blue-100 bg-[#EAF6F9] text-[#087EAB] transition-colors duration-300 group-hover:bg-[#087EAB] group-hover:text-white">
                       <Icon size={19} strokeWidth={1.8} />
                     </div>
 
@@ -145,7 +145,7 @@ export default function WhyChooseUs() {
 
             <Link
               href="/about"
-              className="group mt-6 inline-flex items-center gap-2 text-sm font-bold text-[#087EAB] transition-colors hover:text-[#082F49]"
+              className="hidden groupmt-6inline-flex items-center gap-2 text-sm font-bold text-[#087EAB] transition-colors hover:text-[#082F49]"
             >
               Discover Our Approach
               <ArrowUpRight

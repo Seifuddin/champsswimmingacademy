@@ -17,7 +17,7 @@ export const blogArticles: BlogArticle[] = [
       "Discover the essential first steps to becoming comfortable, confident and capable in the water.",
     category: "Swimming Basics",
     readTime: "5 min read",
-    image: "/images/blog/swimming-beginners.jpg",
+    image: "/images/blog/hero.jpg",
     imageAlt: "Beginner swimmer practising in a swimming pool",
   },
   {
@@ -27,7 +27,7 @@ export const blogArticles: BlogArticle[] = [
       "Understand the importance of water awareness, safe swimming habits and responsible behaviour around pools.",
     category: "Water Safety",
     readTime: "4 min read",
-    image: "/images/blog/water-safety.jpg",
+    image: "/images/blog/hero.jpg",
     imageAlt: "Swimming instructor guiding a learner in the pool",
   },
   {
@@ -37,7 +37,7 @@ export const blogArticles: BlogArticle[] = [
       "Explore how structured lessons and consistent practice can help swimmers overcome uncertainty.",
     category: "Swimming Tips",
     readTime: "4 min read",
-    image: "/images/blog/water-confidence.jpg",
+    image: "/images/blog/hero.jpg",
     imageAlt: "Swimmer confidently practising in a pool",
   },
   {
@@ -47,7 +47,7 @@ export const blogArticles: BlogArticle[] = [
       "Swimming offers valuable opportunities to develop physical fitness, coordination and confidence.",
     category: "Health & Fitness",
     readTime: "5 min read",
-    image: "/images/blog/swimming-benefits.jpg",
+    image: "/images/blog/hero.jpg",
     imageAlt: "Swimmer training in a swimming pool",
   },
   {
@@ -57,7 +57,7 @@ export const blogArticles: BlogArticle[] = [
       "Simple ways parents can encourage practice, confidence and a positive attitude towards swimming.",
     category: "Parents' Guide",
     readTime: "6 min read",
-    image: "/images/blog/parents-guide.jpg",
+    image: "/images/blog/hero.jpg",
     imageAlt: "Swimming instructor supporting a young learner",
   },
   {
@@ -67,7 +67,7 @@ export const blogArticles: BlogArticle[] = [
       "Learn why body position, breathing and consistent practice matter when developing swimming skills.",
     category: "Training & Technique",
     readTime: "5 min read",
-    image: "/images/blog/swimming-technique.jpg",
+    image: "/images/blog/hero.jpg",
     imageAlt: "Swimmer practising swimming technique",
   },
 ];

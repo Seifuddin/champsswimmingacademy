@@ -27,7 +27,6 @@ export default function BlogPage() {
 
       <BlogListing articles={remainingArticles} />
 
-      <BlogCTA />
     </main>
   );
 }

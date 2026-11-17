@@ -28,7 +28,7 @@ const coachingPillars = [
 
 export default function CoachesSection() {
   return (
-    <section className="overflow-hidden bg-[#F7FBFC] py-12 sm:py-14 lg:py-16">
+    <section className="overflow-hidden bg-[#F7FBFC] py-20">
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
 
         <div className="grid items-center gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:gap-14">

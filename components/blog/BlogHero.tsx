@@ -14,7 +14,7 @@ export default function BlogHero() {
       {/* Background image */}
       <div className="absolute inset-0 -z-20">
         <Image
-          src="/images/blog/blog-hero.jpg"
+          src="/images/blog/hero.jpg"
           alt="Swimmer training in a swimming pool"
           fill
           priority

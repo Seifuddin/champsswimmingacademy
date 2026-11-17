@@ -57,7 +57,7 @@ export default function FAQSection() {
   const [activeIndex, setActiveIndex] = useState<number | null>(0);
 
   return (
-    <section className="bg-white py-10 sm:py-12 lg:py-14">
+    <section className="bg-white py-20">
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
 
         {/* Heading */}
@@ -127,12 +127,12 @@ export default function FAQSection() {
               </span>
             </div>
 
-            <div className="divide-y divide-[#EAF0F2]">
+            <div className="divide-ydivide-[#EAF0F2]">
               {faqs.map((faq, index) => {
                 const isOpen = activeIndex === index;
 
                 return (
-                  <div key={faq.question} className="group">
+                  <div key={faq.question} className="group border-b border-blue-100 p-1 rounded-md">
                     <button
                       type="button"
                       aria-expanded={isOpen}
