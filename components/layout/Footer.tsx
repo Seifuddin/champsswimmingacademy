@@ -14,6 +14,7 @@ const footerLinks = [
       { name: "About Us", href: "/about" },
       { name: "Our Coaches", href: "/coaches" },
       { name: "Facilities", href: "/facilities" },
+      { name: "Blog", href: "/blog" },
     ],
   },
   {

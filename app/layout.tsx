@@ -2,13 +2,16 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
+
 export const metadata: Metadata = {
   title: {
-    default: "Champs Swimming Academy | Where Champions Begin",
+    default: "Champs Swimming Academy | Nairobi",
     template: "%s | Champs Swimming Academy",
   },
   description:
-    "Discover professional swimming lessons for babies, children and adults at Champs Swimming Academy in Nairobi, Kenya.",
+    "Learn to swim with confidence at Champs Swimming Academy in Nairobi. Explore our beginner, intermediate and advanced swimming programmes.",
 };
 
 export default function RootLayout({
@@ -18,7 +21,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className="min-h-screen flex flex-col">
+        <Navbar />
+
+        <main className="flex-1">
+          {children}
+        </main>
+
+        <Footer />
+      </body>
     </html>
   );
 }

@@ -14,6 +14,7 @@ import FAQSection from "@/components/home/FAQSection";
 import FinalCTA from "@/components/home/FinalCTA";
 import EnrolmentCTA from "@/components/home/EnrolmentCTA";
 import StatsCounter from "@/components/home/StatsCounter";
+import HomeBlogSection from "@/components/blog/HomeBlogSection";
 
 export default function Home() {
   return (
@@ -29,11 +30,11 @@ export default function Home() {
         <CoachesSection />
         <WhyChooseUs />
         <GallerySection />
-        <Testimonials />
 
         <div id="faqs">
           <FAQSection />
         </div>
+        <HomeBlogSection />
 
       </main>
 

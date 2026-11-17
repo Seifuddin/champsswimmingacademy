@@ -15,6 +15,7 @@ const navigation = [
   { name: "Programmes", href: "/programmes" },
   { name: "Our Coaches", href: "/coaches" },
   { name: "Facilities", href: "/facilities" },
+  { name: "Blog", href: "/blog" },
   { name: "Contact", href: "/contact" },
 ];
 
