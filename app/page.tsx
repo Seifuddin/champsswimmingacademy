@@ -22,14 +22,15 @@ export default function Home() {
       <main>
         <HeroSection />
         <EnrolmentCTA />
-        <ProgrammesSection />
         <StatsCounter />
+        <ProgrammesSection />
         <WhyChooseUs />
         <GallerySection />
 
         <div id="faqs">
           <FAQSection />
         </div>
+        <FinalCTA />
         <CoachesSection />
         <HomeBlogSection />
 

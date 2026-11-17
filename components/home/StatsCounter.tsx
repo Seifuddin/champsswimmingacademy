@@ -7,7 +7,6 @@ import {
   Award,
   Users,
   Target,
-  ArrowUpRight,
 } from "lucide-react";
 
 const stats = [
@@ -69,81 +68,70 @@ export default function StatsCounter() {
     <section
       ref={sectionRef}
       aria-label="Champs Swimming Academy statistics"
-      className="bg-white py-8 sm:py-10 lg:py-12"
+      className="relative overflow-hidden bg-[#082F49] py-9 sm:py-11 lg:py-12"
     >
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      {/* Subtle background decoration */}
+      <div className="pointer-events-none absolute -right-24 -top-36 h-80 w-80 rounded-full border border-white/[0.06]" />
+      <div className="pointer-events-none absolute -right-12 -top-24 h-56 w-56 rounded-full border border-white/[0.06]" />
+      <div className="pointer-events-none absolute -bottom-32 -left-20 h-64 w-64 rounded-full bg-[#22B8C7]/10 blur-3xl" />
 
-        {/* Section Heading */}
-        <div className="mx-auto mb-6 max-w-2xl text-center sm:mb-8">
-          <span className="mb-2 inline-block text-[10px] font-bold uppercase tracking-[0.2em] text-sky-600 sm:text-xs">
+      <div className="relative mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
+
+        {/* Heading */}
+        <div className="mb-6 text-center sm:mb-7">
+          <span className="mb-2 inline-block text-[10px] font-bold uppercase tracking-[0.2em] text-[#7DE5EC]">
             Champs Swimming Academy
           </span>
 
-          <h2 className="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
+          <h2 className="text-2xl font-black leading-tight tracking-tight text-white sm:text-3xl lg:text-4xl">
             Building Better Swimmers.
-            <span className="text-sky-600"> One Stroke at a Time.</span>
+            <span className="block text-[#7DE5EC] sm:inline">
+              {" "}One Stroke at a Time.
+            </span>
           </h2>
         </div>
 
-        {/* Stat Cards */}
-        <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4 lg:gap-5">
+        {/* Statistics */}
+        <div className="grid grid-cols-2 gap-x-3 gap-y-4 sm:gap-x-5 sm:gap-y-5 lg:grid-cols-4 lg:gap-6">
           {stats.map((stat, index) => {
             const Icon = stat.icon;
 
             return (
               <div
                 key={stat.label}
-                className={`group relative flex flex-col rounded-xl border border-slate-200 bg-white p-3 shadow-sm transition-all duration-500 hover:-translate-y-1 hover:border-sky-200 hover:shadow-lg sm:rounded-2xl sm:p-4 lg:p-5 ${
+                className={`group relative flex items-start gap-3 border-l-2 border-[#22B8C7]/60 py-1 pl-3 transition-all duration-500 sm:gap-4 sm:pl-4 ${
                   isVisible
                     ? "translate-y-0 opacity-100"
-                    : "translate-y-4 opacity-0"
+                    : "translate-y-3 opacity-0"
                 }`}
                 style={{
                   transitionDelay: `${index * 100}ms`,
                 }}
               >
-                {/* Card Top */}
-                <div className="mb-2 flex items-center justify-between sm:mb-3">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-sky-50 text-sky-600 transition-colors duration-300 group-hover:bg-sky-600 group-hover:text-white sm:h-10 sm:w-10 sm:rounded-xl">
-                    <Icon size={18} strokeWidth={1.8} />
+                {/* Icon */}
+                <div className="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white/[0.08] text-[#7DE5EC] transition-colors duration-300 group-hover:bg-[#22B8C7] group-hover:text-[#082F49] sm:h-9 sm:w-9">
+                  <Icon size={17} strokeWidth={1.8} />
+                </div>
+
+                {/* Content */}
+                <div className="min-w-0">
+                  <div className="text-lg font-black tracking-tight text-white sm:text-2xl lg:text-[1.8rem]">
+                    {stat.value}
                   </div>
 
-                  <span className="text-[10px] font-semibold tracking-widest text-slate-400 sm:text-xs">
-                    0{index + 1}
-                  </span>
-                </div>
-
-                {/* Stat Value */}
-                <div className="mb-1 text-xl font-extrabold tracking-tight text-slate-900 sm:text-2xl lg:text-3xl">
-                  {stat.value}
-                </div>
-
-                {/* Stat Details */}
-                <div className="flex-1">
-                  <h3 className="text-xs font-bold leading-snug text-slate-900 sm:text-sm">
+                  <h3 className="mt-0.5 text-xs font-bold leading-snug text-white sm:text-sm">
                     {stat.label}
                   </h3>
 
-                  <p className="mt-1.5 text-[10px] leading-relaxed text-slate-500 sm:text-xs sm:leading-relaxed">
+                  <p className="mt-1.5 text-[10px] leading-relaxed text-white/55 sm:text-xs sm:leading-5">
                     {stat.description}
                   </p>
-                </div>
-
-                {/* Card Footer */}
-                <div className="mt-3 flex items-center justify-between border-t border-slate-100 pt-2 sm:mt-4 sm:pt-3">
-                  <span className="text-[9px] font-semibold uppercase tracking-wider text-sky-600 sm:text-[10px]">
-                    Champs Academy
-                  </span>
-
-                  <ArrowUpRight
-                    size={14}
-                    className="text-slate-400 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-sky-600"
-                  />
                 </div>
               </div>
             );
           })}
         </div>
+
       </div>
     </section>
   );
