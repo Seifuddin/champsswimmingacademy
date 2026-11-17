@@ -12,6 +12,8 @@ import GallerySection from "@/components/home/GallerySection";
 import Testimonials from "@/components/home/Testimonials";
 import FAQSection from "@/components/home/FAQSection";
 import FinalCTA from "@/components/home/FinalCTA";
+import EnrolmentCTA from "@/components/home/EnrolmentCTA";
+import StatsCounter from "@/components/home/StatsCounter";
 
 export default function Home() {
   return (
@@ -20,10 +22,11 @@ export default function Home() {
 
       <main>
         <HeroSection />
-        <AboutPreview />
-        <CoachesSection />
+        <EnrolmentCTA />
+        <StatsCounter />
         <ProgrammesSection />
         <LearningJourney />
+        <CoachesSection />
         <WhyChooseUs />
         <GallerySection />
         <Testimonials />
