@@ -132,7 +132,7 @@ export default function FAQSection() {
                 const isOpen = activeIndex === index;
 
                 return (
-                  <div key={faq.question} className="group border-b border-blue-100 p-1 rounded-md">
+                  <div key={faq.question} className="group border-b border-blue-200 px-1 rounded-md">
                     <button
                       type="button"
                       aria-expanded={isOpen}

@@ -38,7 +38,7 @@ export default function EnrolmentCTA() {
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
               <Link
                 href="/contact"
-                className="group inline-flex min-h-12 items-center justify-center gap-3 rounded-lg bg-[#1265a8] px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-[#0d4f88] hover:shadow-lg hover:shadow-blue-900/15"
+                className="group inline-flex min-h-12 items-center justify-center gap-3 rounded-full bg-[#1265a8] px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-[#0d4f88] hover:shadow-lg hover:shadow-blue-900/15"
               >
                 Enquire About Enrolment
                 <ArrowUpRight
@@ -51,7 +51,7 @@ export default function EnrolmentCTA() {
                 href="https://wa.me/YOUR_WHATSAPP_NUMBER"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-[#d5e5ef] bg-white px-5 py-3 text-sm font-semibold text-[#123454] transition-colors hover:border-[#168cc5] hover:text-[#168cc5]"
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-[#d5e5ef] bg-white px-5 py-3 text-sm font-semibold text-[#123454] transition-colors hover:border-[#168cc5] hover:text-[#168cc5]"
               >
                 <MessageCircle size={17} />
                 Chat With Us

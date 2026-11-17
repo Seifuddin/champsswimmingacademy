@@ -4,6 +4,7 @@ import Link from "next/link";
 import {
   ArrowUpRight,
   GraduationCap,
+  MessageCircle,
   Users,
   Waves,
 } from "lucide-react";
@@ -116,21 +117,27 @@ export default function CoachesSection() {
               })}
             </div>
 
-            <div className="mt-5 flex flex-wrap items-center gap-5">
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
               <Link
-                href="/coaches"
-                className="group inline-flex min-h-11 items-center gap-2 rounded-full bg-[#082F49] px-5 py-3 text-[13px] font-bold text-white transition-colors hover:bg-[#087EAB]"
+                href="/contact"
+                className="group inline-flex min-h-12 items-center justify-center gap-3 rounded-full bg-[#1265a8] px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-[#0d4f88] hover:shadow-lg hover:shadow-blue-900/15"
               >
-                Meet Our Coaching Team
+                Enquire About Enrolment
                 <ArrowUpRight
-                  size={16}
-                  className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                  size={17}
+                  className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                 />
               </Link>
 
-              <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#81939D]">
-                Where Champions Begin
-              </span>
+              <Link
+                href="https://wa.me/YOUR_WHATSAPP_NUMBER"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-[#d5e5ef] bg-white px-5 py-3 text-sm font-semibold text-[#123454] transition-colors hover:border-[#168cc5] hover:text-[#168cc5]"
+              >
+                <MessageCircle size={17} />
+                Chat With Us
+              </Link>
             </div>
 
           </div>

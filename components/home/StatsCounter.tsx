@@ -99,7 +99,7 @@ export default function StatsCounter() {
             return (
               <div
                 key={stat.label}
-                className={`group relative flex items-start gap-3 border-l-2 border-[#22B8C7]/60 py-1 pl-3 transition-all duration-500 sm:gap-4 sm:pl-4 ${
+                className={`group relative flex items-start gap-3 border-2 rounded-md border-[#22B8C7]/60 py-1 pl-3 transition-all duration-500 sm:gap-4 sm:pl-4 ${
                   isVisible
                     ? "translate-y-0 opacity-100"
                     : "translate-y-3 opacity-0"
