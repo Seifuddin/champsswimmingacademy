@@ -6,6 +6,7 @@ import { ArrowUpRight } from "lucide-react";
 const programmes = [
   {
     number: "01",
+    slug: "beginner-swimming",
     title: "Beginner Swimming",
     description:
       "Build water confidence and master the fundamentals, from floating and breathing to swimming independently.",
@@ -15,6 +16,7 @@ const programmes = [
   },
   {
     number: "02",
+    slug: "childrens-swimming",
     title: "Children's Swimming",
     description:
       "Fun, supportive lessons that help children develop water confidence, coordination and essential swimming skills.",
@@ -24,6 +26,7 @@ const programmes = [
   },
   {
     number: "03",
+    slug: "adult-swimming",
     title: "Adult Swimming",
     description:
       "Patient, personalised instruction for adults learning to swim or building confidence in the water.",
@@ -33,6 +36,7 @@ const programmes = [
   },
   {
     number: "04",
+    slug: "technique-improvement",
     title: "Technique Improvement",
     description:
       "Refine freestyle, backstroke, breaststroke and butterfly through focused technique development.",
@@ -42,6 +46,7 @@ const programmes = [
   },
   {
     number: "05",
+    slug: "private-swimming-lessons",
     title: "Private Swimming Lessons",
     description:
       "One-on-one coaching tailored to your individual goals, ability and learning pace.",
@@ -51,6 +56,7 @@ const programmes = [
   },
   {
     number: "06",
+    slug: "residential-swimming-lessons",
     title: "Residential Swimming Lessons",
     description:
       "Professional swimming instruction at suitable residential pools, subject to location and facility suitability.",
@@ -60,6 +66,7 @@ const programmes = [
   },
   {
     number: "07",
+    slug: "water-safety-survival",
     title: "Water Safety & Survival",
     description:
       "Learn essential water safety, floating, controlled breathing and basic survival skills.",
@@ -114,7 +121,7 @@ export default function ProgrammesSection() {
           {programmes.map((programme) => (
             <Link
               key={programme.number}
-              href="/programmes"
+              href={`/programmes/${programme.slug}`}
               className={`group relative isolate h-[230px] overflow-hidden rounded-xl bg-[#082F49] sm:h-[245px] ${programme.className}`}
             >
               {/* Background image */}
