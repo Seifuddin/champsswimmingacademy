@@ -4,6 +4,7 @@ import "./globals.css";
 
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import WhatsAppButton from "@/components/whatsapp/Whatsapp";
 
 export const metadata: Metadata = {
   title: {
@@ -23,6 +24,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="min-h-screen flex flex-col">
         <Navbar />
+        <WhatsAppButton />
 
         <main className="flex-1">
           {children}
