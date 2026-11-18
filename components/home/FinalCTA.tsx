@@ -86,7 +86,7 @@ export default function FinalCTA() {
 
             <Link
               href="/programmes"
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-white/30 bg-white/5 px-6 py-3 text-xs font-bold text-white backdrop-blur-sm transition-all duration-300 hover:border-white hover:bg-white/15 sm:text-sm"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-white/40 bg-white/45 px-6 py-3 text-xs font-bold text-white backdrop-blur-sm transition-all duration-300 hover:border-white hover:bg-white/15 sm:text-sm"
             >
               Explore Programmes
               <ArrowUpRight size={15} />

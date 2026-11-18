@@ -10,7 +10,7 @@ type BlogCardProps = {
 
 export default function BlogCard({ article }: BlogCardProps) {
   return (
-    <article className="group min-w-0 border border-blue-100 rounded-md">
+    <article className="group min-w-0 border border-blue-200 rounded-md">
       <Link
         href={`/blog/${article.slug}`}
         className="block"

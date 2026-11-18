@@ -62,7 +62,7 @@ export default function HeroSection() {
 
             <Link
               href="/contact"
-              className="group inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-[#087EAB] px-5 py-2.5 text-xs font-bold text-white transition-colors duration-300 hover:bg-[#22B8C7] hover:text-[#052438] sm:text-sm"
+              className="group inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg[#087EAB] px-5 py-2.5 text-xs font-bold text-white transition-colors duration-300 hover: bg-[#22B8C7] hover:text-[#052438] sm:text-sm"
             >
               Start Your Journey
               <ArrowUpRight
@@ -73,7 +73,7 @@ export default function HeroSection() {
 
             <Link
               href="/programmes"
-              className="group inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-white/60 px-5 py-2.5 text-xs font-bold text-white transition-colors duration-300 hover:bg-white hover:text-[#052438] sm:text-sm"
+              className="group inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-white/60 px-5 py-2.5 text-xs font-bold text-white transition-colors duration-300 hover: bg-white/70 hover:text-[#052438] sm:text-sm"
             >
               Explore Programmes
               <ArrowRight

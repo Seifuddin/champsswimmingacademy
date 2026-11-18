@@ -45,7 +45,7 @@ export default function HomeBlogSection() {
         </div>
 
         {/* Three latest articles */}
-        <div className="grid grid-cols-2 gap-x-3 gap-y-6 sm:gap-x-5 sm:gap-y-8 lg:grid-cols-3 lg:gap-7">
+        <div className="grid grid-cols-1 bg-white md:grid-cols-2 gap-x-3 gap-y-6 sm:gap-x-5 sm:gap-y-8 lg:grid-cols-3 lg:gap-7">
           {articles.map((article) => (
             <BlogCard key={article.slug} article={article} />
           ))}
