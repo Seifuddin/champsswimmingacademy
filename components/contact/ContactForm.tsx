@@ -16,11 +16,12 @@ export default function ContactForm() {
           {/* Left image panel */}
           <div className="relative min-h-[300px] overflow-hidden bg-[#172B3A] lg:min-h-[600px]">
             <Image
-              src="/images/swimmers.jpg"
-              alt="Swimming pool at Champs Swimming Academy"
-              fill
-              className="object-cover"
-            />
+  src="/images/swimmers.jpg"
+  alt="Swimming pool at Champs Swimming Academy"
+  fill
+  sizes="(max-width: 1024px) 100vw, 40vw"
+  className="object-cover"
+/>
 
             <div className="absolute inset-0 bg-gradient-to-t from-[#102432]/95 via-[#102432]/40 to-transparent" />
 
