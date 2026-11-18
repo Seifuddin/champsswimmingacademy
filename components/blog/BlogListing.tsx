@@ -109,7 +109,7 @@ export default function BlogListing({ articles }: BlogListingProps) {
 
       {/* Article grid */}
       {filteredArticles.length > 0 ? (
-        <div className="grid grid-cols-2 gap-x-3 gap-y-8 sm:gap-x-5 sm:gap-y-10 lg:grid-cols-3 lg:gap-x-7 lg:gap-y-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-3 gap-y-8 sm:gap-x-5 sm:gap-y-10 lg:grid-cols-3 lg:gap-x-7 lg:gap-y-12">
           {filteredArticles.map((article) => (
             <BlogCard key={article.slug} article={article} />
           ))}

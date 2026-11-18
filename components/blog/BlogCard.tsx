@@ -10,14 +10,14 @@ type BlogCardProps = {
 
 export default function BlogCard({ article }: BlogCardProps) {
   return (
-    <article className="group min-w-0">
+    <article className="group min-w-0 border border-blue-100 rounded-md">
       <Link
         href={`/blog/${article.slug}`}
         className="block"
         aria-label={`Read ${article.title}`}
       >
         {/* Image */}
-        <div className="relative aspect-[16/10] overflow-hidden rounded-xl bg-slate-100 sm:rounded-2xl">
+        <div className="relative aspect-[20/10] overflow-hidden rounded-t-md bg-slate-100 sm:rounded2xl">
           <Image
             src={article.image}
             alt={article.imageAlt}
@@ -34,7 +34,7 @@ export default function BlogCard({ article }: BlogCardProps) {
         </div>
 
         {/* Article information */}
-        <div className="pt-3 sm:pt-4">
+        <div className="pt-3 sm:pt-4 p-4">
           <div className="mb-2 flex items-center gap-1.5 text-[10px] font-medium text-slate-400 sm:text-xs">
             <Clock3 size={12} />
             <span>{article.readTime}</span>

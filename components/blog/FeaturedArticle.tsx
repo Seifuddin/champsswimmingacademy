@@ -67,7 +67,7 @@ export default function FeaturedArticle({
           <div className="mt-7">
             <Link
               href={`/blog/${article.slug}`}
-              className="inline-flex items-center gap-2 rounded-full bg-[#102b40] px-5 py-3 text-xs font-bold text-white transition-colors hover:bg-sky-700 sm:text-sm"
+              className="inline-flex items-center gap-2 rounded-full bg[#102b40] px-5 py-3 text-xs font-bold text-white transition-colors hover: bg-sky-700 sm:text-sm"
             >
               Read Featured Article
               <ArrowUpRight size={16} />
