@@ -96,7 +96,7 @@ export default function HeroSection() {
         </div>
 
         {/* Supporting Information */}
-        <div className="mt-8 grid max-w-2xl grid-cols-3 border-t border-white/30 pt-4 sm:mt-10 sm:pt-5">
+        <div className="hidden mt-8grid max-w-2xl grid-cols-3 border-t border-white/30 pt-4 sm:mt-10 sm:pt-5">
 
           <div className="pr-2">
             <p className="text-sm font-extrabold text-white sm:text-base">
