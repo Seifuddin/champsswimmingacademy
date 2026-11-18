@@ -12,8 +12,7 @@ const footerLinks = [
     links: [
       { name: "Home", href: "/" },
       { name: "About Us", href: "/about" },
-      { name: "Our Coaches", href: "/coaches" },
-      { name: "Facilities", href: "/facilities" },
+      { name: "Gallery", href: "/gallery" },
       { name: "Blog", href: "/blog" },
     ],
   },

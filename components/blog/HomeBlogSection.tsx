@@ -18,7 +18,7 @@ export default function HomeBlogSection() {
         <div className="mb-7 flex flex-col justify-between gap-4 sm:mb-9 sm:flex-row sm:items-end">
           <div className="max-w-2xl">
             <span className="mb-2 inline-block text-[10px] font-bold uppercase tracking-[0.2em] text-sky-700 sm:text-xs">
-              From the Champs Journal
+              From the Champs Blog
             </span>
 
             <h2
