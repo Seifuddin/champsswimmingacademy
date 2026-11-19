@@ -8,7 +8,6 @@ import {
   ArrowRight,
   ArrowUpRight,
   CheckCircle2,
-  Clock3,
   GraduationCap,
   MessageCircle,
   ShieldCheck,
@@ -75,8 +74,15 @@ export default async function ProgrammeDetailPage({
 
   const enquiryUrl = `/contact?programme=${programme.slug}`;
 
+  const learningIcons = [
+    Waves,
+    Target,
+    GraduationCap,
+    ShieldCheck,
+  ];
+
   return (
-    <div className="bg-white">
+    <div className="bg-white text-[#082F49]">
       {/* HERO */}
       <section className="relative isolate overflow-hidden bg-[#082F49] text-white">
         <div className="absolute inset-0 -z-20">
@@ -90,68 +96,74 @@ export default async function ProgrammeDetailPage({
           />
         </div>
 
-        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#031D2D]/95 via-[#082F49]/85 to-[#082F49]/40" />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-t from-[#031D2D]/65 to-transparent" />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#031D2D]/95 via-[#082F49]/80 to-[#082F49]/35" />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-t from-[#031D2D]/60 via-transparent to-[#031D2D]/20" />
 
-        <div className="mx-auto max-w-7xl px-5 pb-12 pt-7 sm:px-8 sm:pb-16 sm:pt-9 lg:px-10 lg:pb-[76px]">
+        <div className="mx-auto max-w-7xl px-5 pb-12 pt-6 sm:px-8 sm:pb-14 sm:pt-7 lg:px-10 lg:pb-16">
           <Link
             href="/programmes"
-            className="mb-8 inline-flex items-center gap-2 text-sm font-medium text-white/70 transition hover:text-[#22B8C7]"
+            className="mb-8 inline-flex items-center gap-2 text-xs font-medium text-white/65 transition hover:text-[#22B8C7]"
           >
-            <ArrowLeft size={16} />
+            <ArrowLeft size={15} />
             All programmes
           </Link>
 
           <div className="max-w-3xl">
-            <div className="mb-5 flex flex-wrap items-center gap-3">
-              <span className="rounded-full border border-[#22B8C7]/40 bg-[#22B8C7]/15 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-[#6CE0E7]">
+            <div className="mb-4 flex flex-wrap items-center gap-3">
+              <span className="border border-[#22B8C7]/40 bg-[#22B8C7]/10 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.17em] text-[#7CE5E9]">
                 {programme.category}
               </span>
 
-              <span className="text-xs font-bold tracking-[0.16em] text-white/50">
-                PROGRAMME {programme.number}
+              <span className="text-[10px] font-bold uppercase tracking-[0.17em] text-white/50">
+                Programme {programme.number}
               </span>
             </div>
 
-            <h1 className="max-w-2xl text-4xl font-black leading-[1.08] tracking-tight sm:text-5xl lg:text-[60px]">
+            <h1 className="max-w-2xl text-4xl font-black leading-[1.04] tracking-tight sm:text-5xl lg:text-[58px]">
               {programme.title}
-              <span className="mt-2 block text-[#22B8C7]">
+              <span className="mt-1 block text-[#22B8C7]">
                 {programme.shortTitle}.
               </span>
             </h1>
 
-            <p className="mt-6 max-w-2xl text-sm leading-7 text-white/80 sm:text-base sm:leading-8">
+            <p className="mt-5 max-w-xl text-sm leading-7 text-white/75 sm:text-base sm:leading-7">
               {programme.description}
             </p>
 
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-6 flex flex-wrap gap-3">
               <Link
                 href={enquiryUrl}
-                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-[#22B8C7] px-5 py-3 text-sm font-bold text-[#062B40] transition hover:bg-[#5DD8E0]"
+                className="inline-flex min-h-11 items-center justify-center gap-2 bg-[#22B8C7] px-5 py-3 text-sm font-bold text-[#062B40] transition hover:bg-[#5DD8E0]"
               >
                 Enquire About This Programme
-                <ArrowUpRight size={17} />
+                <ArrowUpRight size={16} />
               </Link>
 
               <Link
                 href="/contact"
-                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-white/30 bg-white/10 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/20"
+                className="inline-flex min-h-11 items-center justify-center gap-2 border border-white/25 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
               >
                 Contact Us
                 <MessageCircle size={16} />
               </Link>
             </div>
           </div>
+
+          <div className="mt-9 flex items-center gap-3 text-[10px] font-semibold uppercase tracking-[0.15em] text-white/45">
+            <span className="h-px w-10 bg-[#22B8C7]" />
+            Champs Swimming Academy
+          </div>
         </div>
       </section>
 
       {/* QUICK INFORMATION */}
-      <section className="border-b border-slate-100 bg-[#F7FBFC]">
-        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-5 px-5 py-6 sm:grid-cols-3 sm:px-8 lg:px-10">
-          <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white text-[#087EAB] shadow-sm">
-              <GraduationCap size={20} />
-            </div>
+      <section className="border-b border-[#E6EEF1] bg-[#F7FAFC]">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 divide-y divide-[#E0EAEE] px-5 sm:grid-cols-3 sm:divide-x sm:divide-y-0 sm:px-8 lg:px-10">
+          <div className="flex items-center gap-3 py-4 sm:pr-5">
+            <GraduationCap
+              size={21}
+              className="shrink-0 text-[#087EAB]"
+            />
             <div>
               <p className="text-xs font-bold text-[#082F49]">
                 Guided Learning
@@ -162,10 +174,11 @@ export default async function ProgrammeDetailPage({
             </div>
           </div>
 
-          <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white text-[#087EAB] shadow-sm">
-              <Waves size={20} />
-            </div>
+          <div className="flex items-center gap-3 py-4 sm:px-5">
+            <Waves
+              size={21}
+              className="shrink-0 text-[#087EAB]"
+            />
             <div>
               <p className="text-xs font-bold text-[#082F49]">
                 Swimming Facility
@@ -176,10 +189,11 @@ export default async function ProgrammeDetailPage({
             </div>
           </div>
 
-          <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white text-[#087EAB] shadow-sm">
-              <ShieldCheck size={20} />
-            </div>
+          <div className="flex items-center gap-3 py-4 sm:pl-5">
+            <ShieldCheck
+              size={21}
+              className="shrink-0 text-[#087EAB]"
+            />
             <div>
               <p className="text-xs font-bold text-[#082F49]">
                 Safety Conscious
@@ -193,45 +207,48 @@ export default async function ProgrammeDetailPage({
       </section>
 
       {/* INTRODUCTION */}
-      <section className="py-14 sm:py-16 lg:py-20">
-        <div className="mx-auto grid max-w-7xl gap-10 px-5 sm:px-8 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16 lg:px-10">
+      <section className="py-11 sm:py-14">
+        <div className="mx-auto grid max-w-7xl gap-8 px-5 sm:px-8 lg:grid-cols-[1.15fr_0.85fr] lg:gap-14 lg:px-10">
           <div>
-            <div className="mb-3 flex items-center gap-3">
-              <span className="h-[2px] w-8 bg-[#22B8C7]" />
-              <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#087EAB]">
+            <div className="mb-3 flex items-center gap-2.5">
+              <span className="h-px w-7 bg-[#22B8C7]" />
+              <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#087EAB]">
                 About This Programme
               </span>
             </div>
 
-            <h2 className="max-w-2xl text-3xl font-black leading-tight tracking-tight text-[#082F49] sm:text-4xl">
+            <h2 className="max-w-xl text-3xl font-black leading-[1.15] tracking-tight sm:text-[38px]">
               Develop your skills.
-              <span className="text-[#087EAB]"> Grow with confidence.</span>
+              <span className="text-[#087EAB]">
+                {" "}Grow with confidence.
+              </span>
             </h2>
 
-            <p className="mt-5 text-[15px] leading-8 text-[#647B89]">
+            <p className="mt-4 max-w-2xl text-sm leading-7 text-[#647B89]">
               {programme.introduction}
             </p>
           </div>
 
-          <div className="rounded-2xl border border-[#DCECEF] bg-[#F7FBFC] p-6 sm:p-7">
-            <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl bg-white text-[#087EAB] shadow-sm">
-              <Target size={21} />
+          <div className="border-l-2 border-[#22B8C7] bg-[#F7FAFC] pl-5 sm:pl-6">
+            <div className="pb-5">
+              <div className="mb-2 flex items-center gap-2">
+                <Target size={17} className="text-[#087EAB]" />
+                <h3 className="text-sm font-extrabold text-[#082F49]">
+                  Who Is This For?
+                </h3>
+              </div>
+
+              <p className="text-sm leading-6 text-[#647B89]">
+                {programme.audience}
+              </p>
             </div>
 
-            <h3 className="text-xl font-extrabold text-[#082F49]">
-              Who Is This For?
-            </h3>
-
-            <p className="mt-3 text-sm leading-7 text-[#647B89]">
-              {programme.audience}
-            </p>
-
-            <div className="mt-6 border-t border-[#DCECEF] pt-5">
-              <p className="text-xs font-bold uppercase tracking-[0.14em] text-[#087EAB]">
+            <div className="border-t border-[#DCE8ED] pt-4">
+              <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.16em] text-[#087EAB]">
                 Our Approach
               </p>
 
-              <p className="mt-2 text-sm leading-7 text-[#647B89]">
+              <p className="text-sm leading-6 text-[#647B89]">
                 {programme.approach}
               </p>
             </div>
@@ -240,81 +257,88 @@ export default async function ProgrammeDetailPage({
       </section>
 
       {/* LEARNING AREAS */}
-      <section className="bg-[#F7FBFC] py-14 sm:py-16 lg:py-20">
+      <section className="bg-[#F5FAFC] py-11 sm:py-14">
         <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
-          <div className="mb-9 max-w-2xl">
-            <div className="mb-3 flex items-center gap-3">
-              <span className="h-[2px] w-8 bg-[#22B8C7]" />
-              <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#087EAB]">
-                What You Will Work On
-              </span>
+          <div className="mb-7 flex flex-col justify-between gap-4 lg:flex-row lg:items-end">
+            <div className="max-w-2xl">
+              <div className="mb-3 flex items-center gap-2.5">
+                <span className="h-px w-7 bg-[#22B8C7]" />
+                <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#087EAB]">
+                  What You Will Work On
+                </span>
+              </div>
+
+              <h2 className="text-3xl font-black leading-[1.15] tracking-tight sm:text-[38px]">
+                Building the right
+                <span className="text-[#087EAB]">
+                  {" "}swimming skills.
+                </span>
+              </h2>
             </div>
 
-            <h2 className="text-3xl font-black leading-tight tracking-tight text-[#082F49] sm:text-4xl">
-              Building the right
-              <span className="text-[#087EAB]"> swimming skills.</span>
-            </h2>
-
-            <p className="mt-3 text-sm leading-7 text-[#647B89] sm:text-base">
+            <p className="max-w-lg text-sm leading-6 text-[#647B89] lg:pb-1">
               Each learning area contributes to your swimming development.
               Activities are guided according to your current ability and
               learning needs.
             </p>
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {programme.learningAreas.map((area, index) => (
-              <div
-                key={area.title}
-                className="rounded-xl border border-[#E2EDF0] bg-white p-5 transition duration-300 hover:-translate-y-1 hover:border-[#22B8C7]/50 hover:shadow-lg hover:shadow-[#082F49]/5"
-              >
-                <div className="mb-5 flex items-center justify-between">
-                  <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#EAF8FA] text-[#087EAB]">
-                    {index === 0 ? (
-                      <Waves size={20} />
-                    ) : index === 1 ? (
-                      <Target size={20} />
-                    ) : index === 2 ? (
-                      <GraduationCap size={20} />
-                    ) : (
-                      <ShieldCheck size={20} />
-                    )}
-                  </span>
+          <div className="grid border-t border-[#DCE8ED] sm:grid-cols-2">
+            {programme.learningAreas.map((area, index) => {
+              const Icon =
+                learningIcons[index % learningIcons.length];
 
-                  <span className="text-xs font-bold tracking-widest text-[#A5B8C0]">
-                    0{index + 1}
-                  </span>
+              return (
+                <div
+                  key={area.title}
+                  className={`group flex gap-4 border-b border-[#DCE8ED] py-5 sm:py-6 ${
+                    index % 2 === 0
+                      ? "sm:border-r sm:pr-6"
+                      : "sm:pl-6"
+                  }`}
+                >
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center border border-[#D9E9EE] bg-white text-[#087EAB] transition group-hover:border-[#22B8C7] group-hover:bg-[#E8F8FA]">
+                    <Icon size={19} strokeWidth={1.8} />
+                  </div>
+
+                  <div className="min-w-0 flex-1">
+                    <div className="mb-1 flex items-center gap-2.5">
+                      <span className="text-[10px] font-bold tracking-widest text-[#22A9B7]">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+
+                      <h3 className="text-sm font-extrabold text-[#082F49] sm:text-base">
+                        {area.title}
+                      </h3>
+                    </div>
+
+                    <p className="max-w-lg text-sm leading-6 text-[#647B89]">
+                      {area.description}
+                    </p>
+                  </div>
                 </div>
-
-                <h3 className="text-base font-extrabold text-[#082F49]">
-                  {area.title}
-                </h3>
-
-                <p className="mt-2 text-sm leading-6 text-[#647B89]">
-                  {area.description}
-                </p>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
 
       {/* LEARNING OUTCOMES */}
-      <section className="py-14 sm:py-16 lg:py-20">
-        <div className="mx-auto grid max-w-7xl items-start gap-10 px-5 sm:px-8 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16 lg:px-10">
+      <section className="py-11 sm:py-14">
+        <div className="mx-auto grid max-w-7xl items-start gap-8 px-5 sm:px-8 lg:grid-cols-[0.8fr_1.2fr] lg:gap-14 lg:px-10">
           <div>
-            <div className="mb-3 flex items-center gap-3">
-              <span className="h-[2px] w-8 bg-[#22B8C7]" />
-              <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#087EAB]">
+            <div className="mb-3 flex items-center gap-2.5">
+              <span className="h-px w-7 bg-[#22B8C7]" />
+              <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#087EAB]">
                 Your Development
               </span>
             </div>
 
-            <h2 className="text-3xl font-black leading-tight tracking-tight text-[#082F49] sm:text-4xl">
+            <h2 className="text-3xl font-black leading-[1.15] tracking-tight sm:text-[38px]">
               Skills that move you forward.
             </h2>
 
-            <p className="mt-4 text-sm leading-7 text-[#647B89] sm:text-base">
+            <p className="mt-4 text-sm leading-7 text-[#647B89]">
               Our aim is to help you develop useful swimming skills through
               structured instruction, practice and constructive feedback.
               Your progress will depend on your starting point and individual
@@ -323,23 +347,34 @@ export default async function ProgrammeDetailPage({
 
             <Link
               href={enquiryUrl}
-              className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-[#087EAB] transition hover:text-[#082F49]"
+              className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-[#087EAB] transition hover:text-[#082F49]"
             >
               Start your swimming journey
-              <ArrowRight size={17} />
+              <ArrowRight size={16} />
             </Link>
           </div>
 
-          <div className="rounded-2xl border border-[#E2EDF0] bg-white p-5 sm:p-7">
-            <h3 className="mb-5 text-lg font-extrabold text-[#082F49]">
-              What you can work towards
-            </h3>
+          <div className="border border-[#DCE8ED] bg-white">
+            <div className="flex items-center justify-between gap-4 border-b border-[#DCE8ED] px-5 py-4 sm:px-6">
+              <h3 className="text-sm font-extrabold text-[#082F49]">
+                What you can work towards
+              </h3>
 
-            <div className="space-y-4">
-              {programme.outcomes.map((outcome) => (
-                <div key={outcome} className="flex items-start gap-3">
+              <Target size={18} className="shrink-0 text-[#087EAB]" />
+            </div>
+
+            <div className="grid sm:grid-cols-2">
+              {programme.outcomes.map((outcome, index) => (
+                <div
+                  key={outcome}
+                  className={`flex items-start gap-2.5 px-5 py-4 sm:px-6 ${
+                    index % 2 === 0
+                      ? "sm:border-r sm:border-[#E7EFF2]"
+                      : ""
+                  } border-b border-[#E7EFF2]`}
+                >
                   <CheckCircle2
-                    size={19}
+                    size={17}
                     className="mt-0.5 shrink-0 text-[#16A6B4]"
                   />
                   <p className="text-sm leading-6 text-[#647B89]">
@@ -353,28 +388,42 @@ export default async function ProgrammeDetailPage({
       </section>
 
       {/* FAQ */}
-      <section className="border-t border-slate-100 bg-[#F7FBFC] py-14 sm:py-16">
+      <section className="border-y border-[#E6EEF1] bg-[#F7FAFC] py-11 sm:py-14">
         <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
-          <div className="mx-auto mb-8 max-w-2xl text-center">
-            <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.2em] text-[#087EAB]">
-              Need More Information?
-            </p>
+          <div className="mb-7">
+            <div className="mb-3 flex items-center gap-2.5">
+              <span className="h-px w-7 bg-[#22B8C7]" />
+              <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#087EAB]">
+  Need More Information?
+</span>
+            </div>
 
-            <h2 className="text-3xl font-black tracking-tight text-[#082F49] sm:text-4xl">
+            <h2 className="text-3xl font-black leading-tight tracking-tight sm:text-[38px]">
               Frequently asked questions
             </h2>
           </div>
 
-          <div className="mx-auto max-w-3xl divide-y divide-[#DCECEF] rounded-2xl border border-[#DCECEF] bg-white px-5 sm:px-8">
-            {programme.faqs.map((faq) => (
-              <div key={faq.question} className="py-5">
-                <h3 className="text-base font-bold text-[#082F49]">
-                  {faq.question}
-                </h3>
+          <div className="grid gap-x-10 lg:grid-cols-2">
+            {programme.faqs.map((faq, index) => (
+              <div
+                key={faq.question}
+                className="border-t border-[#DCE8ED] py-5"
+              >
+                <div className="flex items-start gap-3">
+                  <span className="mt-0.5 text-[10px] font-bold tracking-widest text-[#22A9B7]">
+                    {String(index + 1).padStart(2, "02")}
+                  </span>
 
-                <p className="mt-2 text-sm leading-7 text-[#647B89]">
-                  {faq.answer}
-                </p>
+                  <div className="min-w-0 flex-1">
+                    <h3 className="text-sm font-extrabold leading-6 text-[#082F49]">
+                      {faq.question}
+                    </h3>
+
+                    <p className="mt-2 text-sm leading-6 text-[#647B89]">
+                      {faq.answer}
+                    </p>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
@@ -382,38 +431,38 @@ export default async function ProgrammeDetailPage({
       </section>
 
       {/* ENQUIRY CTA */}
-      <section className="bg-[#082F49] py-12 text-white sm:py-16">
-        <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-7 px-5 sm:px-8 lg:flex-row lg:items-center lg:px-10">
+      <section className="bg-[#082F49] py-9 text-white sm:py-11">
+        <div className="mx-auto flex max-w-7xl flex-col gap-6 px-5 sm:px-8 lg:flex-row lg:items-center lg:justify-between lg:px-10">
           <div className="max-w-2xl">
-            <div className="mb-3 flex items-center gap-2 text-[#22B8C7]">
-              <Waves size={19} />
-              <span className="text-[11px] font-bold uppercase tracking-[0.2em]">
+            <div className="mb-2.5 flex items-center gap-2 text-[#22B8C7]">
+              <Waves size={17} />
+              <span className="text-[10px] font-bold uppercase tracking-[0.18em]">
                 Take the Next Step
               </span>
             </div>
 
-            <h2 className="text-3xl font-black leading-tight tracking-tight sm:text-4xl">
+            <h2 className="text-2xl font-black leading-tight tracking-tight sm:text-3xl">
               Ready to make progress in the water?
             </h2>
 
-            <p className="mt-3 max-w-xl text-sm leading-7 text-white/65">
+            <p className="mt-2 max-w-xl text-sm leading-6 text-white/65">
               Get in touch with Champs Swimming Academy to discuss
               {` ${programme.title.toLowerCase()} `}and find out how to get started.
             </p>
           </div>
 
-          <div className="flex w-full flex-wrap gap-3 sm:w-auto">
+          <div className="flex w-full flex-wrap gap-3 lg:w-auto lg:shrink-0">
             <Link
               href={enquiryUrl}
-              className="inline-flex min-h-11 flex-1 items-center justify-center gap-2 rounded-lg bg-[#22B8C7] px-5 py-3 text-sm font-bold text-[#062B40] transition hover:bg-[#5DD8E0] sm:flex-none"
+              className="inline-flex min-h-11 flex-1 items-center justify-center gap-2 bg-[#22B8C7] px-5 py-3 text-sm font-bold text-[#062B40] transition hover:bg-[#5DD8E0] sm:flex-none"
             >
               Enquire Now
-              <ArrowUpRight size={17} />
+              <ArrowUpRight size={16} />
             </Link>
 
             <Link
               href="/programmes"
-              className="inline-flex min-h-11 flex-1 items-center justify-center gap-2 rounded-lg border border-white/25 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/10 sm:flex-none"
+              className="inline-flex min-h-11 flex-1 items-center justify-center gap-2 border border-white/25 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/10 sm:flex-none"
             >
               Other Programmes
               <ArrowRight size={16} />
@@ -423,35 +472,39 @@ export default async function ProgrammeDetailPage({
       </section>
 
       {/* OTHER PROGRAMMES */}
-      <section className="py-12 sm:py-14">
+      <section className="py-10 sm:py-12">
         <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
-          <div className="mb-7 flex flex-col justify-between gap-3 sm:flex-row sm:items-end">
+          <div className="mb-6 flex flex-col justify-between gap-3 sm:flex-row sm:items-end">
             <div>
-              <p className="mb-2 text-[11px] font-bold uppercase tracking-[0.18em] text-[#087EAB]">
-                Keep Exploring
-              </p>
-              <h2 className="text-2xl font-black tracking-tight text-[#082F49] sm:text-3xl">
+              <div className="mb-2 flex items-center gap-2.5">
+                <span className="h-px w-7 bg-[#22B8C7]" />
+                <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#087EAB]">
+                  Keep Exploring
+                </span>
+              </div>
+
+              <h2 className="text-2xl font-black tracking-tight sm:text-3xl">
                 Explore other programmes
               </h2>
             </div>
 
             <Link
               href="/programmes"
-              className="inline-flex w-fit items-center gap-2 text-sm font-bold text-[#087EAB] hover:text-[#082F49]"
+              className="inline-flex w-fit items-center gap-2 text-xs font-bold text-[#087EAB] transition hover:text-[#082F49]"
             >
               View all programmes
-              <ArrowUpRight size={16} />
+              <ArrowUpRight size={15} />
             </Link>
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-3">
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {otherProgrammes.map((item) => (
               <Link
                 key={item.slug}
                 href={`/programmes/${item.slug}`}
-                className="group flex items-center gap-4 rounded-xl border border-[#E2EDF0] bg-white p-3 transition hover:border-[#22B8C7]/50 hover:shadow-md"
+                className="group flex items-center gap-3 border border-[#E2EDF0] bg-white p-3 transition hover:border-[#22B8C7]/60 hover:bg-[#F8FCFD]"
               >
-                <div className="relative h-20 w-24 shrink-0 overflow-hidden rounded-lg bg-[#EAF8FA]">
+                <div className="relative h-[76px] w-[96px] shrink-0 overflow-hidden bg-[#EAF8FA]">
                   <Image
                     src={item.image}
                     alt={item.alt}
@@ -462,17 +515,20 @@ export default async function ProgrammeDetailPage({
                 </div>
 
                 <div className="min-w-0 flex-1">
-                  <p className="text-[10px] font-bold uppercase tracking-wider text-[#087EAB]">
+                  <p className="text-[9px] font-bold uppercase tracking-[0.14em] text-[#087EAB]">
                     Programme {item.number}
                   </p>
 
-                  <h3 className="mt-1 text-sm font-extrabold leading-snug text-[#082F49]">
+                  <h3 className="mt-1 line-clamp-2 text-sm font-extrabold leading-snug text-[#082F49]">
                     {item.title}
                   </h3>
 
-                  <span className="mt-2 inline-flex items-center gap-1 text-xs font-bold text-[#087EAB]">
+                  <span className="mt-2 inline-flex items-center gap-1 text-[11px] font-bold text-[#087EAB]">
                     Explore
-                    <ArrowUpRight size={13} />
+                    <ArrowUpRight
+                      size={12}
+                      className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                    />
                   </span>
                 </div>
               </Link>
