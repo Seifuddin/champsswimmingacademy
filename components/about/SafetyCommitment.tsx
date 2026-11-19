@@ -1,112 +1,141 @@
-
 import Image from "next/image";
 import {
   ShieldCheck,
   Eye,
   HeartHandshake,
   Waves,
+  ArrowUpRight,
 } from "lucide-react";
 
 const safetyFeatures = [
   {
+    number: "01",
     icon: Eye,
     title: "Responsible Supervision",
     description:
-      "Promoting attentive supervision during swimming activities.",
+      "Promoting attentive supervision and responsible participation during swimming activities.",
   },
   {
+    number: "02",
     icon: Waves,
     title: "Water Awareness",
     description:
-      "Encouraging an understanding of water safety and responsible behaviour.",
+      "Developing respect for water, awareness of surroundings and safer behaviour.",
   },
   {
+    number: "03",
     icon: HeartHandshake,
-    title: "Supportive Learning",
+    title: "Guided Confidence",
     description:
-      "Helping learners develop water confidence through appropriate guidance.",
+      "Helping learners become comfortable in the water through patient, supportive instruction.",
   },
 ];
 
 export default function SafetyCommitment() {
   return (
-    <section className="bg-white py-12 sm:py-14 lg:py-16">
+    <section className="bg-white py-9 sm:py-11 lg:py-12">
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
 
-        <div className="grid items-center gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14">
+        {/* Header */}
+        <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+          <div className="max-w-2xl">
+            <div className="mb-3 flex items-center gap-2">
+              <ShieldCheck size={15} className="text-[#087EAB]" />
 
-          <div>
-            <p className="mb-3 text-[10px] font-bold uppercase tracking-[0.2em] text-[#087EAB] sm:text-xs">
-              A Responsibility We Value
-            </p>
-
-            <h2 className="text-3xl font-black leading-tight tracking-tight text-[#172B3A] sm:text-4xl lg:text-5xl">
-              Swimming Skills.
-              <span className="block text-[#087EAB]">
-                Safety for Life.
+              <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#087EAB]">
+                Our Commitment to Safety
               </span>
-            </h2>
-
-            <p className="mt-4 text-sm leading-7 text-slate-600 sm:text-base">
-              Learning to swim goes hand in hand with understanding
-              the importance of water safety. We believe swimming
-              education should encourage awareness, responsible
-              behaviour and respect for the water.
-            </p>
-
-            <div className="mt-6 space-y-4">
-              {safetyFeatures.map((feature) => {
-                const Icon = feature.icon;
-
-                return (
-                  <div key={feature.title} className="flex gap-3">
-                    <Icon
-                      size={20}
-                      className="mt-0.5 shrink-0 text-[#087EAB]"
-                    />
-
-                    <div>
-                      <h3 className="text-sm font-bold text-[#172B3A]">
-                        {feature.title}
-                      </h3>
-                      <p className="mt-1 text-sm leading-6 text-slate-600">
-                        {feature.description}
-                      </p>
-                    </div>
-                  </div>
-                );
-              })}
             </div>
+
+            <h2 className="text-3xl font-black leading-[1.1] tracking-tight text-[#082F49] sm:text-4xl lg:text-[2.8rem]">
+              A Skill to Learn.
+              <span className="text-[#087EAB]"> A Responsibility to Respect.</span>
+            </h2>
           </div>
 
-          <div className="relative aspect-[5/4] overflow-hidden rounded-2xl">
-            <Image
-              src="/images/safety.jpg"
-              alt="Swimming instruction with a focus on water awareness"
-              fill
-              sizes="(max-width: 1024px) 100vw, 55vw"
-              className="object-cover"
+          <p className="max-w-md text-sm leading-6 text-slate-500 lg:pb-1">
+            Swimming education is about more than ability. It is
+            about developing awareness, respect for water and
+            understanding the importance of safety.
+          </p>
+        </div>
+
+        {/* Image strip */}
+        <div className="relative mt-7 h-[170px] overflow-hidden sm:h-[210px] lg:h-[230px]">
+          <Image
+            src="/images/safety.jpg"
+            alt="Water safety and swimming instruction"
+            fill
+            sizes="100vw"
+            className="object-cover object-center"
+          />
+
+          <div className="absolute inset-0 bg-[#082F49]/30" />
+
+          <div className="absolute bottom-0 left-0 flex items-center gap-3 bg-white px-4 py-3 sm:px-6">
+            <ShieldCheck
+              size={21}
+              strokeWidth={1.8}
+              className="text-[#087EAB]"
             />
 
-            <div className="absolute inset-x-4 bottom-4 rounded-xl bg-white/95 p-4 sm:inset-x-5 sm:bottom-5">
-              <div className="flex items-center gap-3">
-                <ShieldCheck
-                  size={25}
-                  className="shrink-0 text-[#087EAB]"
-                />
-                <div>
-                  <p className="text-sm font-extrabold text-[#172B3A]">
-                    Safety is part of learning.
-                  </p>
-                  <p className="mt-1 text-xs text-slate-500">
-                    Building awareness alongside swimming skills.
-                  </p>
-                </div>
-              </div>
-            </div>
+            <p className="text-xs font-bold text-[#082F49] sm:text-sm">
+              Water safety belongs in every swimming journey.
+            </p>
           </div>
 
+          <div className="absolute right-0 top-0 h-1 w-24 bg-[#22B8C7]" />
         </div>
+
+        {/* Safety principles */}
+        <div className="mt-6 grid gap-x-8 gap-y-5 sm:grid-cols-2 lg:grid-cols-3">
+          {safetyFeatures.map((feature) => {
+            const Icon = feature.icon;
+
+            return (
+              <div
+                key={feature.number}
+                className="relative border-t border-slate-200 pt-4"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="text-[10px] font-bold tracking-[0.15em] text-[#087EAB]/60">
+                    {feature.number}
+                  </span>
+
+                  <Icon
+                    size={18}
+                    strokeWidth={1.7}
+                    className="text-[#087EAB]"
+                  />
+                </div>
+
+                <h3 className="mt-3 text-base font-extrabold text-[#082F49]">
+                  {feature.title}
+                </h3>
+
+                <p className="mt-1.5 text-sm leading-6 text-slate-500">
+                  {feature.description}
+                </p>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Closing statement */}
+        <div className="mt-6 flex items-center justify-between border-t border-slate-200 pt-4">
+          <div className="flex items-center gap-2">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#22B8C7]" />
+            <p className="text-[10px] font-semibold text-slate-500 sm:text-xs">
+              Building skills. Encouraging awareness. Respecting water.
+            </p>
+          </div>
+
+          <ArrowUpRight
+            size={16}
+            className="shrink-0 text-[#087EAB]"
+          />
+        </div>
+
       </div>
     </section>
   );

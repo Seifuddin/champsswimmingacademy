@@ -1,94 +1,79 @@
-
 import Image from "next/image";
-import { Heart, Target, Waves } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
-const storyPoints = [
-  {
-    icon: Heart,
-    title: "A Passion for Swimming",
-    description:
-      "A belief in the value of swimming as an essential life skill and a rewarding activity.",
-  },
-  {
-    icon: Target,
-    title: "A Purpose to Teach",
-    description:
-      "An approach centred on helping learners develop at their own pace.",
-  },
-  {
-    icon: Waves,
-    title: "A Journey of Growth",
-    description:
-      "Encouraging continuous learning, confidence and personal improvement.",
-  },
-];
+const values = ["Confidence", "Water Safety", "Progress"];
 
 export default function OurStory() {
   return (
-    <section className="bg-[#F7FAFC] py-12 sm:py-14 lg:py-16">
+    <section className="bg-white py-8 sm:py-24 lg:py-24">
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
+        <div className="grid items-center gap-7 lg:grid-cols-[0.85fr_1.15fr] lg:gap-12">
 
-        <div className="mb-8 max-w-2xl">
-          <p className="mb-3 text-[10px] font-bold uppercase tracking-[0.2em] text-[#087EAB] sm:text-xs">
-            Our Story
-          </p>
-
-          <h2 className="text-3xl font-black leading-tight tracking-tight text-[#172B3A] sm:text-4xl lg:text-5xl">
-            Built Around a Passion
-            <span className="text-[#087EAB]"> for Swimming.</span>
-          </h2>
-
-          <p className="mt-4 max-w-xl text-sm leading-7 text-slate-600 sm:text-base">
-            Every great swimming journey begins with an opportunity
-            to learn. Our story is rooted in the belief that
-            everyone deserves the chance to become confident
-            in the water.
-          </p>
-        </div>
-
-        <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-12">
-
-          <div className="relative aspect-[5/4] overflow-hidden rounded-2xl">
+          {/* IMAGE */}
+          <div className="relative h-[230px] overflow-hidden sm:h-[300px] lg:h-[340px]">
             <Image
               src="/images/hero.jpg"
-              alt="Swimmer practising in a swimming pool"
+              alt="Swimming at Champs Swimming Academy"
               fill
-              sizes="(max-width: 1024px) 100vw, 50vw"
+              sizes="(max-width: 1024px) 100vw, 40vw"
               className="object-cover"
             />
-            <div className="absolute bottom-4 left-4 rounded-lg bg-white/95 px-4 py-2">
-              <p className="text-xs font-bold text-[#172B3A]">
-                Every swimmer has a beginning.
+
+            <div className="absolute bottom-0 left-0 h-1 w-24 bg-[#22B8C7]" />
+          </div>
+
+          {/* STORY */}
+          <div>
+            <div className="mb-3 flex items-center gap-2.5">
+              <span className="h-[2px] w-7 bg-[#22B8C7]" />
+              <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#087EAB]">
+                Our Story
               </p>
             </div>
-          </div>
 
-          <div className="space-y-5">
-            {storyPoints.map((point, index) => {
-              const Icon = point.icon;
+            <h2 className="max-w-2xl text-3xl font-black leading-[1.12] tracking-tight text-[#082F49] sm:text-4xl lg:text-[2.8rem]">
+              Inspiring Confidence,
+              <span className="text-[#087EAB]"> One Stroke at a Time.</span>
+            </h2>
 
-              return (
-                <div key={point.title} className="flex gap-4">
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-[#DCEEF2] bg-white text-[#087EAB]">
-                    <Icon size={20} strokeWidth={1.8} />
-                  </div>
+            <div className="mt-4 max-w-2xl space-y-3 text-sm leading-6 text-slate-600">
+              <p>
+                At Champs Swimming Academy, we believe swimming is more
+                than a sport. It is an essential life skill that builds
+                confidence, promotes safety and opens the door to endless
+                possibilities.
+              </p>
 
-                  <div className="flex-1 border-b border-slate-200 pb-5 last:border-0 last:pb-0">
-                    <p className="mb-1 text-[10px] font-bold tracking-widest text-[#087EAB]">
-                      0{index + 1}
-                    </p>
-                    <h3 className="text-base font-bold text-[#172B3A]">
-                      {point.title}
-                    </h3>
-                    <p className="mt-1 text-sm leading-6 text-slate-600">
-                      {point.description}
-                    </p>
-                  </div>
+              <p>
+                Our goal is to create a supportive learning environment
+                where everyone, regardless of their starting point, can
+                develop their abilities, overcome challenges and become
+                confident swimmers.
+              </p>
+            </div>
+
+            {/* VALUES */}
+            <div className="mt-5 flex flex-wrap gap-x-6 gap-y-2 border-t border-slate-200 pt-4">
+              {values.map((value, index) => (
+                <div key={value} className="flex items-center gap-2">
+                  <span className="text-[10px] font-bold text-[#22B8C7]">
+                    0{index + 1}
+                  </span>
+                  <span className="text-xs font-semibold text-[#082F49]">
+                    {value}
+                  </span>
                 </div>
-              );
-            })}
-          </div>
+              ))}
+            </div>
 
+            {/* Small closing detail */}
+            <div className="mt-4 flex items-center gap-2 text-[#087EAB]">
+              <span className="text-xs font-bold">
+                Every swimmer has a beginning.
+              </span>
+              <ArrowUpRight size={15} />
+            </div>
+          </div>
         </div>
       </div>
     </section>

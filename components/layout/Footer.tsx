@@ -19,11 +19,12 @@ const footerLinks = [
   {
     title: "Our Programmes",
     links: [
-      { name: "Beginner Swimming", href: "/programmes" },
-      { name: "Children's Swimming", href: "/programmes" },
-      { name: "Adult Swimming", href: "/programmes" },
-      { name: "Private Lessons", href: "/programmes" },
-      { name: "Technique & Water Safety", href: "/programmes" },
+      { name: "Beginner Swimming", href: "/programmes/beginner-swimming" },
+      { name: "Children's Swimming", href: "/programmes/childrens-swimming" },
+      { name: "Adult Swimming", href: "/programmes/adult-swimming" },
+      { name: "Private Lessons", href: "/programmes/private-swimming-lessons" },
+      { name: "Technique Improvement", href: "/programmes/technique-improvement" },
+      { name: "Water Safety", href: "/programmes/water-safety-survival" },
     ],
   },
   {
@@ -46,7 +47,7 @@ export default function Footer() {
         {/* Main Footer */}
         <div className="grid gap-9 border-b border-white/10 py-9 sm:py-10 lg:grid-cols-[1.15fr_2fr] lg:gap-16">
 
-          {/* Brand */}
+          {/* Brand  */}
           <div className="max-w-sm">
             <Link href="/" className="inline-flex items-center gap-2.5">
               <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#087EAB] text-white">

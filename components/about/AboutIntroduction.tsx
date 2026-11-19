@@ -5,67 +5,97 @@ import { ArrowUpRight, Waves } from "lucide-react";
 
 export default function AboutIntroduction() {
   return (
-    <section className="bg-white py-12 sm:py-14 lg:py-16">
-      <div className="mx-auto grid max-w-7xl items-center gap-8 px-5 sm:px-8 lg:grid-cols-2 lg:gap-14 lg:px-10">
+    <section className="bg-white py-9 sm:py-11 lg:py-12">
+      <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
 
-        <div className="relative">
-          <div className="relative aspect-[5/4] overflow-hidden rounded-2xl">
-            <Image
-              src="/images/hero.jpg"
-              alt="Swimming lesson at the academy"
-              fill
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              className="object-cover"
-            />
+        <div className="grid items-center gap-7 lg:grid-cols-[1.05fr_1fr] lg:gap-12">
+
+          {/* Visual side */}
+          <div className="relative">
+            <div className="group relative h-[260px] overflow-hidden rounded-xl sm:h-[320px] lg:h-[350px]">
+              <Image
+                src="/images/hero.jpg"
+                alt="Swimming lesson at Champs Swimming Academy"
+                fill
+                priority
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+              />
+
+              {/* Image contrast */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#082F49]/65 via-transparent to-[#082F49]/10" />
+
+              {/* Image label */}
+              <div className="absolute bottom-4 left-4 flex items-center gap-2.5 rounded-md border border-white/20 bg-[#082F49]/50 px-3 py-2 backdrop-blur-md">
+                <Waves size={16} className="text-[#56D1DB]" />
+
+                <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-white">
+                  Learn · Grow · Excel
+                </span>
+              </div>
+
+              {/* Decorative corner */}
+              <div className="absolute right-0 top-0 h-14 w-14 border-b border-l border-white/25 bg-white/5 backdrop-blur-sm" />
+            </div>
+
+            {/* Image accent */}
+            <div className="absolute -bottom-1 -left-1 h-12 w-12 rounded-bl-xl border-b-[3px] border-l-[3px] border-[#22B8C7]" />
           </div>
 
-          <div className="absolute -bottom-3 right-3 flex items-center gap-2 rounded-xl border border-slate-100 bg-white px-4 py-3 shadow-lg sm:right-5">
-            <Waves size={22} className="text-[#087EAB]" />
-            <div>
-              <p className="text-xs font-bold text-[#172B3A]">
-                Learn. Grow. Excel.
-              </p>
-              <p className="text-[10px] text-slate-500">
-                Every stroke matters.
-              </p>
+          {/* Content side */}
+          <div>
+            {/* Eyebrow */}
+            <div className="mb-3 flex items-center gap-2.5">
+              <span className="h-[2px] w-7 bg-[#22B8C7]" />
+
+              <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-[#087EAB]">
+                Who We Are
+              </span>
+            </div>
+
+            {/* Heading */}
+            <h2 className="text-3xl font-black leading-[1.1] tracking-tight text-[#082F49] sm:text-4xl lg:text-[2.65rem]">
+              Building Confidence.
+              <span className="mt-1 block text-[#087EAB]">
+                Creating Stronger Swimmers.
+              </span>
+            </h2>
+
+            {/* Intro */}
+            <p className="mt-4 max-w-xl text-sm leading-7 text-[#647B89] sm:text-[15px]">
+              Champs Swimming Academy helps children and adults
+              develop swimming ability, water confidence and a
+              lifelong appreciation for swimming.
+            </p>
+
+            <p className="mt-2.5 max-w-xl text-sm leading-7 text-[#647B89] sm:text-[15px]">
+              Through structured instruction, practical training and
+              a supportive learning environment, we help swimmers
+              build essential skills and progress at their own pace.
+            </p>
+
+            {/* Bottom action */}
+            <div className="mt-5 flex flex-wrap items-center gap-5 border-t border-[#E6EEF2] pt-4">
+              <Link
+                href="/programmes"
+                className="group inline-flex items-center gap-2 text-sm font-bold text-[#087EAB] transition-colors hover:text-[#082F49]"
+              >
+                Explore Our Programmes
+                <ArrowUpRight
+                  size={16}
+                  className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
+                />
+              </Link>
+
+              <span className="h-4 w-px bg-[#DCE8ED]" />
+
+              <span className="text-[10px] font-semibold uppercase tracking-[0.12em] text-[#91A5B0]">
+                Swimming for Every Journey
+              </span>
             </div>
           </div>
+
         </div>
-
-        <div className="pt-2 lg:pt-0">
-          <p className="mb-3 text-[10px] font-bold uppercase tracking-[0.2em] text-[#087EAB] sm:text-xs">
-            Who We Are
-          </p>
-
-          <h2 className="text-3xl font-black leading-tight tracking-tight text-[#172B3A] sm:text-4xl">
-            Inspiring Confidence,
-            <span className="block text-[#087EAB]">
-              One Stroke at a Time.
-            </span>
-          </h2>
-
-          <p className="mt-5 text-sm leading-7 text-slate-600 sm:text-base">
-            Champs Swimming Academy is dedicated to helping
-            children and adults discover the skills, confidence
-            and enjoyment that come with learning to swim.
-          </p>
-
-          <p className="mt-3 text-sm leading-7 text-slate-600 sm:text-base">
-            Through structured instruction and an encouraging
-            learning approach, we aim to make swimming education
-            a rewarding experience for learners at different
-            stages of their journey.
-          </p>
-
-          <Link
-            href="/programmes"
-            className="group mt-6 inline-flex items-center gap-2 text-sm font-bold text-[#087EAB] transition hover:text-[#22B8C7]"
-          >
-            Discover What We Offer
-            <ArrowUpRight size={17} className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
-          </Link>
-        </div>
-
       </div>
     </section>
   );

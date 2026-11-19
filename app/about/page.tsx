@@ -12,6 +12,7 @@ import AboutCTA from "@/components/about/AboutCTA";
 import StatsCounter from "@/components/home/StatsCounter";
 import FinalCTA from "@/components/home/FinalCTA";
 import AcademyCredibilityStrip from "@/components/about/AcademyCredibilityStrip";
+import LearningJourney from "@/components/home/LearningJourney";
 
 export default function AboutPage() {
   return (
@@ -19,12 +20,12 @@ export default function AboutPage() {
       <AboutHero />
       <AcademyCredibilityStrip />
       <AboutIntroduction />
-      <StatsCounter />
       <MissionVisionValues />
-      <OurStory />
-      <FinalCTA />
       <SwimmingPhilosophy />
-      <WhyChooseChamps />
+      <OurStory />
+      <StatsCounter />
+      <LearningJourney />
+      <FinalCTA />
       <CoachingTeam />
       <SafetyCommitment />
     </main>
