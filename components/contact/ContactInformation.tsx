@@ -1,3 +1,4 @@
+
 import Link from "next/link";
 import {
   MapPin,
@@ -33,68 +34,85 @@ const contactDetails = [
     icon: Clock3,
     label: "Opening Hours",
     value: "Add Opening Hours",
-    description: "Contact us to confirm lesson availability.",
+    description: "Contact us to confirm availability.",
     href: "#contact-form",
   },
 ];
 
 export default function ContactInformation() {
   return (
-    <section
-      id="contact-information"
-      className="bg-white py-12 sm:py-14 lg:py-16"
-    >
+    <section id="contact-information" className="bg-white py-8 sm:py-10">
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
-        <div className="mb-8 max-w-2xl">
-          <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#087EAB]">
-            Get in Touch
-          </p>
 
-          <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#172B3A] sm:text-4xl">
-            We'd Love to Hear From You
-          </h2>
+        <div className="grid gap-8 lg:grid-cols-[0.75fr_1.25fr] lg:gap-14">
 
-          <p className="mt-3 text-sm leading-7 text-slate-600 sm:text-base">
-            Whether you're enquiring about lessons, registration or general
-            information, we're ready to assist.
-          </p>
-        </div>
+          {/* INTRODUCTION */}
+          <div className="lg:pr-5">
+            <div className="mb-3 flex items-center gap-2">
+              <span className="h-0.5 w-7 bg-[#22B8C7]" />
+              <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#087EAB]">
+                Contact Information
+      </span>
+            </div>
 
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {contactDetails.map((item) => {
-            const Icon = item.icon;
+            <h2 className="text-3xl font-black leading-[1.1] tracking-tight text-[#082F49] sm:text-4xl">
+              Let's Start
+              <span className="text-[#087EAB]"> a Conversation.</span>
+            </h2>
 
-            return (
-              <Link
-                key={item.label}
-                href={item.href}
-                className="group flex min-h-[175px] flex-col border border-slate-200 bg-[#F7FAFC] p-5 transition duration-300 hover:-translate-y-1 hover:border-[#22B8C7] hover:bg-white hover:shadow-lg"
-              >
-                <div className="flex h-11 w-11 items-center justify-center rounded-md bg-[#E6F5F8] text-[#087EAB] transition group-hover:bg-[#087EAB] group-hover:text-white">
-                  <Icon size={21} strokeWidth={1.8} />
-                </div>
+            <p className="mt-3 max-w-md text-sm leading-6 text-slate-500">
+              Have a question about swimming lessons, programmes or
+              registration? Reach out to us. We're happy to help.
+            </p>
 
-                <div className="mt-5 flex items-center justify-between gap-2">
-                  <h3 className="text-base font-bold text-[#172B3A]">
-                    {item.label}
-                  </h3>
+            <div className="mt-5 flex items-center gap-2 text-xs font-semibold text-[#082F49]">
+              <span className="h-2 w-2 rounded-full bg-[#22B8C7]" />
+              We're here to help you get started.
+            </div>
+          </div>
 
-                  <ArrowUpRight
-                    size={17}
-                    className="text-slate-400 transition group-hover:text-[#087EAB]"
-                  />
-                </div>
+          {/* CONTACT DETAILS */}
+          <div className="grid grid-cols-1 sm:grid-cols-2">
+            {contactDetails.map((item, index) => {
+              const Icon = item.icon;
 
-                <p className="mt-1 break-words text-sm font-semibold text-[#087EAB]">
-                  {item.value}
-                </p>
+              return (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  className={`group flex gap-3 py-4 transition-colors hover:bg-[#F7FAFC] sm:px-4 ${
+                    index < 2 ? "border-b border-slate-200" : ""
+                  } ${index % 2 === 1 ? "sm:border-l sm:border-slate-200" : ""}`}
+                >
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center bg-[#EAF6F9] text-[#087EAB] transition-colors group-hover:bg-[#087EAB] group-hover:text-white">
+                    <Icon size={17} strokeWidth={1.8} />
+                  </div>
 
-                <p className="mt-2 text-xs leading-5 text-slate-500">
-                  {item.description}
-                </p>
-              </Link>
-            );
-          })}
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-center justify-between gap-2">
+                      <p className="text-[10px] font-bold uppercase tracking-[0.12em] text-slate-400">
+                        {item.label}
+                      </p>
+
+                      <ArrowUpRight
+                        size={14}
+                        className="shrink-0 text-slate-400 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-[#087EAB]"
+                      />
+                    </div>
+
+                    <p className="mt-1 break-words text-sm font-bold text-[#082F49]">
+                      {item.value}
+                    </p>
+
+                    <p className="mt-1 text-xs leading-5 text-slate-500">
+                      {item.description}
+                    </p>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+
         </div>
       </div>
     </section>

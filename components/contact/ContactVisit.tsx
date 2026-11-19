@@ -1,3 +1,4 @@
+
 import {
   MapPin,
   Navigation,
@@ -7,83 +8,117 @@ import Link from "next/link";
 
 export default function ContactVisit() {
   return (
-    <section
-      id="visit-us"
-      className="bg-white py-12 sm:py-14 lg:py-16"
-    >
+    <section id="visit-us" className="bg-white py-8 sm:py-10 lg:py-12">
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
-        <div className="grid items-center gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:gap-14">
+
+        {/* Section heading */}
+        <div className="mb-6 flex flex-col justify-between gap-3 sm:flex-row sm:items-end">
           <div>
-            <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#087EAB]">
-              Find Us
+            <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-[#087EAB]">
+              Find Our Location
             </p>
 
-            <h2 className="mt-3 text-3xl font-bold leading-tight tracking-tight text-[#172B3A] sm:text-4xl">
-              Come and Visit Champs
+            <h2 className="mt-2 text-2xl font-bold tracking-tight text-[#082F49] sm:text-3xl">
+              Come and Visit Champs.
             </h2>
+          </div>
 
-            <p className="mt-4 text-sm leading-7 text-slate-600 sm:text-base">
-              We'd be happy to welcome you, answer your questions and help
-              you explore our swimming programmes.
-            </p>
+          <p className="max-w-md text-sm leading-6 text-slate-500 sm:text-right">
+            We'd love to welcome you, introduce our programmes and help you
+            find the right swimming experience.
+          </p>
+        </div>
 
-            <div className="mt-7 flex items-start gap-4 border-t border-slate-200 pt-6">
-              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md bg-[#E6F5F8] text-[#087EAB]">
-                <MapPin size={21} />
+        {/* Location content */}
+        <div className="grid overflow-hidden border border-slate-200 md:grid-cols-[1fr_1.25fr]">
+
+          {/* Location details */}
+          <div className="flex flex-col justify-between p-5 sm:p-7 lg:p-8">
+            <div>
+              <div className="flex items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center bg-[#E8F5F8] text-[#087EAB]">
+                  <MapPin size={19} />
+                </div>
+
+                <div>
+                  <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-slate-400">
+                    Our Location
+                  </p>
+                  <h3 className="mt-0.5 text-sm font-bold text-[#082F49]">
+                    Champs Swimming Academy
+                  </h3>
+                </div>
               </div>
 
-              <div>
-                <h3 className="font-bold text-[#172B3A]">Our Location</h3>
-                <p className="mt-1 text-sm leading-6 text-slate-600">
-                  Add the academy's full physical address here.
-                </p>
-              </div>
+              <p className="mt-4 max-w-sm text-sm leading-6 text-slate-600">
+                Find us at our swimming facility. Get in touch with our team
+                for the exact location, directions and programme availability.
+              </p>
             </div>
 
-            <div className="mt-6 flex items-start gap-4 border-t border-slate-200 pt-6">
-              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md bg-[#E6F5F8] text-[#087EAB]">
-                <Navigation size={21} />
-              </div>
+            <div className="mt-6 border-t border-slate-200 pt-4">
+              <div className="flex items-start gap-3">
+                <Navigation
+                  size={17}
+                  className="mt-0.5 shrink-0 text-[#22B8C7]"
+                />
 
-              <div>
-                <h3 className="font-bold text-[#172B3A]">
-                  Planning a Visit?
-                </h3>
-                <p className="mt-1 text-sm leading-6 text-slate-600">
-                  Contact our team before visiting so we can assist you
-                  with directions and availability.
+                <p className="text-xs leading-5 text-slate-500">
+                  We recommend contacting us before your visit to ensure
+                  someone is available to welcome and assist you.
                 </p>
               </div>
+
+              <Link
+                href="/contact#contact-form"
+                className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-[#087EAB] transition hover:text-[#082F49]"
+              >
+                Get in Touch
+                <ArrowUpRight size={16} />
+              </Link>
             </div>
           </div>
 
-          <div className="relative flex min-h-[300px] items-center justify-center overflow-hidden bg-[#EAF3F6] p-6 sm:min-h-[360px] sm:p-10">
-            <div className="absolute -right-12 -top-12 h-48 w-48 rounded-full border-[30px] border-[#22B8C7]/10" />
-            <div className="absolute -bottom-16 -left-12 h-56 w-56 rounded-full border-[35px] border-[#087EAB]/10" />
+          {/* Destination panel */}
+          <div className="relative flex min-h-[230px] flex-col justify-between overflow-hidden bg-[#082F49] p-6 text-white sm:min-h-[270px] sm:p-8">
+            {/* Subtle graphic */}
+            <div className="pointer-events-none absolute -right-12 -top-20 h-64 w-64 rounded-full border border-white/[0.07]" />
+            <div className="pointer-events-none absolute -right-5 -top-12 h-48 w-48 rounded-full border border-white/[0.07]" />
 
-            <div className="relative z-10 max-w-sm text-center">
-              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-white text-[#087EAB] shadow-sm">
-                <MapPin size={30} />
+            <div className="relative z-10 flex items-start justify-between">
+              <div>
+                <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-[#22B8C7]">
+                  Your Destination
+                </p>
+
+                <h3 className="mt-3 text-2xl font-bold tracking-tight sm:text-3xl">
+                  Champs Swimming
+                  <br />
+                  Academy
+                </h3>
               </div>
 
-              <h3 className="mt-5 text-2xl font-bold text-[#172B3A]">
-                Champs Swimming Academy
-              </h3>
+              <div className="flex h-11 w-11 items-center justify-center border border-white/15 bg-white/[0.06] text-[#22B8C7]">
+                <MapPin size={21} />
+              </div>
+            </div>
 
-              <p className="mt-3 text-sm leading-6 text-slate-600">
-                Your destination for swimming lessons, confidence and
-                lifelong aquatic skills.
+            <div className="relative z-10 mt-6 flex flex-col gap-4 border-t border-white/15 pt-4 sm:flex-row sm:items-end sm:justify-between">
+              <p className="max-w-xs text-sm leading-6 text-white/65">
+                Learning to swim, building confidence and developing skills
+                that last a lifetime.
               </p>
 
               <Link
                 href="/contact#contact-form"
-                className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-[#087EAB] transition hover:text-[#172B3A]"
+                className="inline-flex w-fit shrink-0 items-center gap-2 bg-[#22B8C7] px-4 py-2.5 text-xs font-bold text-[#082F49] transition hover:bg-white"
               >
-                Ask for Directions
-                <ArrowUpRight size={17} />
+                Plan Your Visit
+                <ArrowUpRight size={16} />
               </Link>
             </div>
           </div>
+
         </div>
       </div>
     </section>
