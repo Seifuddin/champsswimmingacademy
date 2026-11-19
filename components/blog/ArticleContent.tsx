@@ -1,4 +1,3 @@
-
 import Link from "next/link";
 import {
   ArrowRight,
@@ -544,15 +543,23 @@ export default function ArticleContent({
 }) {
   const content = articleContent[article.slug];
 
+
   if (!content) {
     return (
-      <div className="rounded-2xl border border-slate-200 bg-white p-6">
-        <p className="text-slate-600">
-          This article is being prepared. Please check back soon.
-        </p>
+      <div className="mx-auto max-w-4xl rounded-2xl border border-[#DCE7EE] bg-white p-6 sm:p-8">
+        <div className="flex items-start gap-3">
+          <BookOpen className="mt-1 shrink-0 text-[#087EAB]" size={20} />
+          <div>
+            <h2 className="text-lg font-bold text-[#082F49]">Article coming soon</h2>
+            <p className="mt-1 text-sm leading-6 text-slate-600">
+              This article is being prepared. Please check back soon.
+            </p>
+          </div>
+        </div>
       </div>
     );
   }
+
 
   const contents = [
     ...content.sections.map((section, index) => ({
@@ -563,75 +570,85 @@ export default function ArticleContent({
     { title: "Final thoughts", id: "article-conclusion" },
   ];
 
-  return (
-    <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,1fr)_250px] lg:gap-10">
-      <article className="min-w-0">
-        <div className="mb-8 border-b border-slate-200 pb-7">
-          <div className="mb-4 flex items-center gap-2 text-sm font-semibold text-sky-700">
-            <BookOpen size={17} />
-            <span>Article overview</span>
-          </div>
 
-          <p className="text-[15px] leading-7 text-slate-600 sm:text-base sm:leading-8">
-            {content.introduction}
-          </p>
+  return (
+    <div className="mx-auto grid max-w-7xl items-start gap-7 px-4 sm:px-6 lg:grid-cols-[minmax(0,1fr)_270px] lg:gap-10 lg:px-8">
+      <article className="min-w-0">
+        {/* EDITORIAL INTRO */}
+        <div className="relative mb-8 overflow-hidden rounded-2xl border border-[#DCE8EF] bg-white">
+          <div className="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-[#22B8C7] to-[#087EAB]" />
+          <div className="p-5 pl-6 sm:p-7 sm:pl-8">
+            <div className="mb-3 flex items-center gap-2 text-[10px] font-extrabold uppercase tracking-[0.18em] text-[#087EAB]">
+              <BookOpen size={15} />
+              <span>Article overview</span>
+            </div>
+            <p className="text-[15px] leading-7 text-[#42566A] sm:text-[16px] sm:leading-[1.85]">
+              {content.introduction}
+            </p>
+          </div>
         </div>
 
-        <div className="space-y-8">
+
+        {/* ARTICLE SECTIONS */}
+        <div className="space-y-7 sm:space-y-9">
           {content.sections.map((section, index) => (
             <section
               key={section.title}
               id={`section-${index + 1}`}
               className="scroll-mt-24"
             >
-              <div className="mb-3 flex items-start gap-3">
-                <span className="mt-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-sky-50 text-xs font-bold text-sky-700">
+              <div className="mb-3 flex items-start gap-3 sm:gap-4">
+                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#082F49] text-[11px] font-bold tabular-nums text-white">
                   {String(index + 1).padStart(2, "0")}
                 </span>
-
-                <h2 className="text-xl font-bold leading-snug tracking-tight text-[#102b40] sm:text-2xl">
-                  {section.title}
-                </h2>
+                <div className="min-w-0 flex-1 border-b border-[#E4ECF2] pb-3">
+                  <h2 className="text-xl font-extrabold leading-snug tracking-tight text-[#082F49] sm:text-[23px]">
+                    {section.title}
+                  </h2>
+                </div>
               </div>
 
-              <div className="space-y-3 pl-0 sm:pl-10">
+              <div className="space-y-3 pl-0 sm:pl-12">
                 {section.paragraphs.map((paragraph, paragraphIndex) => (
                   <p
                     key={paragraphIndex}
-                    className="text-[15px] leading-7 text-slate-600 sm:text-base sm:leading-7"
+                    className="text-[14px] leading-[1.85] text-slate-600 sm:text-[15px] sm:leading-7"
                   >
                     {paragraph}
                   </p>
                 ))}
 
+
                 {section.points && (
-                  <ul className="space-y-2.5 py-1">
-                    {section.points.map((point) => (
-                      <li
-                        key={point}
-                        className="flex items-start gap-2.5 text-[14px] leading-6 text-slate-600 sm:text-[15px]"
-                      >
-                        <CheckCircle2
-                          size={17}
-                          className="mt-1 shrink-0 text-sky-600"
-                        />
-                        <span>{point}</span>
-                      </li>
-                    ))}
-                  </ul>
+                  <div className="my-4 rounded-xl border border-[#E2EDF3] bg-[#F7FAFC] p-4 sm:p-4">
+                    <p className="mb-3 text-[10px] font-extrabold uppercase tracking-[0.16em] text-[#087EAB]">
+                      Key takeaways
+                    </p>
+                    <ul className="space-y-2">
+                      {section.points.map((point) => (
+                        <li
+                          key={point}
+                          className="flex items-start gap-2.5 text-[13px] leading-6 text-[#42566A] sm:text-[14px]"
+                        >
+                          <CheckCircle2 size={16} className="mt-1 shrink-0 text-[#1599B4]" />
+                          <span>{point}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 )}
 
+
                 {section.tip && (
-                  <div className="my-4 flex gap-3 rounded-xl border border-sky-100 bg-sky-50/80 p-4 sm:p-5">
-                    <Lightbulb
-                      size={20}
-                      className="mt-0.5 shrink-0 text-sky-700"
-                    />
-                    <div>
-                      <p className="mb-1 text-sm font-bold text-[#102b40]">
-                        Champs Tip
+                  <div className="my-4 flex gap-3 rounded-xl border border-[#D8EEF1] bg-[#EAF8FA] p-3.5 sm:p-4">
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white text-[#087EAB] shadow-sm">
+                      <Lightbulb size={17} />
+                    </span>
+                    <div className="min-w-0">
+                      <p className="mb-1 text-[10px] font-extrabold uppercase tracking-[0.15em] text-[#087EAB]">
+                        Champs tip
                       </p>
-                      <p className="text-sm leading-6 text-slate-600">
+                      <p className="text-[13px] leading-6 text-[#40586B] sm:text-sm">
                         {section.tip}
                       </p>
                     </div>
@@ -642,93 +659,120 @@ export default function ArticleContent({
           ))}
         </div>
 
+
+        {/* FAQ */}
         <section
           id="article-faqs"
-          className="mt-10 scroll-mt-24 border-t border-slate-200 pt-8"
+          className="mt-9 scroll-mt-24 border-t border-[#DCE7EE] pt-7 sm:mt-11 sm:pt-8"
         >
-          <div className="mb-5">
-            <p className="mb-2 text-xs font-bold uppercase tracking-[0.18em] text-sky-700">
-              Common questions
-            </p>
-            <h2 className="text-2xl font-bold tracking-tight text-[#102b40] sm:text-3xl">
-              Frequently asked questions
-            </h2>
+          <div className="mb-5 flex items-end justify-between gap-4">
+            <div>
+              <p className="mb-2 text-[10px] font-extrabold uppercase tracking-[0.18em] text-[#087EAB]">
+                Questions & answers
+              </p>
+              <h2 className="text-2xl font-extrabold tracking-tight text-[#082F49] sm:text-3xl">
+                Frequently asked questions
+              </h2>
+            </div>
+            <span className="hidden rounded-lg bg-[#EAF5F8] px-3 py-2 text-[11px] font-bold text-[#087EAB] sm:inline-flex">
+              {String(content.faqs.length).padStart(2, "0")} FAQs
+            </span>
           </div>
 
-          <div className="divide-y divide-slate-200">
-            {content.faqs.map((faq) => (
-              <div key={faq.question} className="py-4">
-                <h3 className="mb-2 text-base font-bold text-[#102b40]">
-                  {faq.question}
-                </h3>
-                <p className="text-sm leading-7 text-slate-600 sm:text-[15px]">
-                  {faq.answer}
-                </p>
+
+          <div className="overflow-hidden rounded-xl border border-[#DCE7EE] bg-white">
+            {content.faqs.map((faq, index) => (
+              <div
+                key={faq.question}
+                className={`flex gap-3 p-4 sm:p-4 ${index !== content.faqs.length - 1 ? "border-b border-[#E7EEF3]" : ""}`}
+              >
+                <span className="mt-0.5 shrink-0 text-[10px] font-extrabold tabular-nums text-[#1599B4]">
+                  {String(index + 1).padStart(2, "02")}
+                </span>
+                <div className="min-w-0">
+                  <h3 className="text-[14px] font-bold leading-6 text-[#082F49] sm:text-[15px]">
+                    {faq.question}
+                  </h3>
+                  <p className="mt-1.5 text-[13px] leading-6 text-slate-600 sm:text-sm">
+                    {faq.answer}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
         </section>
 
+
+        {/* CONCLUSION */}
         <section
           id="article-conclusion"
-          className="mt-8 scroll-mt-24 rounded-2xl bg-[#102b40] p-5 text-white sm:p-7"
+          className="relative mt-7 scroll-mt-24 overflow-hidden rounded-2xl bg-[#082F49] p-5 text-white sm:p-7"
         >
-          <div className="mb-3 flex items-center gap-2 text-sky-300">
-            <ShieldCheck size={19} />
-            <span className="text-xs font-bold uppercase tracking-[0.16em]">
-              Final thoughts
-            </span>
+          <div className="absolute -right-10 -top-12 h-40 w-40 rounded-full border border-white/[0.07]" />
+          <div className="absolute -right-5 -top-7 h-28 w-28 rounded-full border border-white/[0.07]" />
+          <div className="relative">
+            <div className="mb-3 flex items-center gap-2 text-[#72D7E1]">
+              <ShieldCheck size={17} />
+              <span className="text-[10px] font-extrabold uppercase tracking-[0.17em]">
+                Final thoughts
+              </span>
+            </div>
+            <p className="text-[13px] leading-7 text-slate-200 sm:text-[14px]">
+              {content.conclusion}
+            </p>
+            <Link
+              href="/contact"
+              className="mt-4 inline-flex items-center gap-2 rounded-lg bg-white px-4 py-2.5 text-xs font-bold text-[#082F49] transition hover:bg-[#DDF7FA]"
+            >
+              Explore our swimming programmes
+              <ArrowRight size={15} />
+            </Link>
           </div>
-
-          <p className="text-sm leading-7 text-slate-200 sm:text-[15px]">
-            {content.conclusion}
-          </p>
-
-          <Link
-            href="/contact"
-            className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-white transition hover:text-sky-300"
-          >
-            Explore our swimming programmes
-            <ArrowRight size={16} />
-          </Link>
         </section>
       </article>
 
-      <aside className="lg:sticky lg:top-24">
-        <div className="rounded-2xl border border-slate-200 bg-white p-5">
-          <p className="mb-4 text-xs font-bold uppercase tracking-[0.16em] text-slate-400">
-            In this article
-          </p>
 
-          <nav className="space-y-1.5">
+      {/* DESKTOP ARTICLE NAVIGATION */}
+      <aside className="lg:sticky lg:top-24">
+        <div className="overflow-hidden rounded-2xl border border-[#DCE7EE] bg-white">
+          <div className="border-b border-[#E6EEF3] bg-[#F7FAFC] px-4 py-4">
+            <p className="text-[10px] font-extrabold uppercase tracking-[0.18em] text-[#087EAB]">
+              Reading guide
+            </p>
+            <h2 className="mt-1 text-base font-extrabold text-[#082F49]">
+              In this article
+            </h2>
+          </div>
+
+          <nav className="space-y-0.5 p-2.5">
             {contents.map((item, index) => (
               <a
                 key={item.id}
                 href={`#${item.id}`}
-                className="group flex items-start gap-2 rounded-lg px-2 py-2 text-sm leading-5 text-slate-600 transition hover:bg-sky-50 hover:text-sky-800"
+                className="group flex items-start gap-2.5 rounded-lg px-2.5 py-2 text-[12px] leading-5 text-slate-600 transition hover:bg-[#EFF8FB] hover:text-[#087EAB]"
               >
-                <span className="mt-0.5 text-[11px] font-bold text-slate-400 group-hover:text-sky-700">
-                  {String(index + 1).padStart(2, "0")}
+                <span className="mt-0.5 shrink-0 font-extrabold tabular-nums text-slate-400 group-hover:text-[#087EAB]">
+                  {String(index + 1).padStart(2, "02")}
                 </span>
-                <span>{item.title}</span>
+                <span className="font-medium">{item.title}</span>
               </a>
             ))}
           </nav>
 
-          <div className="mt-5 border-t border-slate-100 pt-4">
-            <p className="text-sm font-bold text-[#102b40]">
-              Ready to learn?
-            </p>
-            <p className="mt-1 text-xs leading-5 text-slate-500">
-              Discover structured swimming programmes at Champs Swimming Academy.
-            </p>
-            <Link
-              href="/contact"
-              className="mt-3 inline-flex items-center gap-1.5 text-sm font-bold text-sky-700 hover:text-sky-900"
-            >
-              Get in touch
-              <ArrowRight size={15} />
-            </Link>
+          <div className="border-t border-[#E6EEF3] p-4">
+            <div className="rounded-xl bg-[#082F49] p-4 text-white">
+              <p className="text-[13px] font-extrabold">Ready to get started?</p>
+              <p className="mt-1 text-xs leading-5 text-slate-300">
+                Discover swimming programmes designed to help you learn and progress.
+              </p>
+              <Link
+                href="/contact"
+                className="mt-3 inline-flex items-center gap-1.5 text-xs font-bold text-[#72D7E1] transition hover:text-white"
+              >
+                Talk to our team
+                <ArrowRight size={14} />
+              </Link>
+            </div>
           </div>
         </div>
       </aside>
