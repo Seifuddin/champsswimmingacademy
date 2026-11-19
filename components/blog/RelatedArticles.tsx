@@ -23,7 +23,7 @@ export default function RelatedArticles({
         </h2>
       </div>
 
-      <div className="grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-3">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-3">
         {articles.map((article) => (
           <BlogCard key={article.slug} article={article} />
         ))}
