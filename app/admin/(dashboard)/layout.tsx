@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
-
+import AdminDashboardShell from "@/components/admin/AdminDashboardShell";
 
 export default async function AdminDashboardLayout({
   children,
@@ -34,5 +34,13 @@ export default async function AdminDashboardLayout({
     redirect("/admin/login");
   }
 
-  return <>{children}</>;
+  return (
+    <AdminDashboardShell
+      fullName={profile.full_name}
+      email={user.email ?? ""}
+      role={profile.role}
+    >
+      {children}
+    </AdminDashboardShell>
+  );
 }
