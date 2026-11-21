@@ -17,6 +17,7 @@ const navigation = [
   { name: "Programs", href: "/programmes", dropdown: true },
   { name: "Gallery", href: "/gallery" },
   { name: "Blog", href: "/blog" },
+  { name: "Admin", href: "/admin" },
   { name: "Contact", href: "/contact" },
 ];
 
