@@ -10,53 +10,16 @@ import {
   Images,
 } from "lucide-react";
 
-export type GalleryImage = {
-  src: string;
-  alt: string;
-  caption?: string;
-};
+import type { GalleryImage } from "@/lib/gallery/getGalleryImages";
 
 type AcademyGalleryProps = {
-  images?: GalleryImage[];
+  images: GalleryImage[];
   title?: string;
   description?: string;
 };
 
-const galleryImages: GalleryImage[] = [
-  {
-    src: "/images/gallery/swimmers.jpg",
-    alt: "Swimming students practising in the pool",
-    caption: "Building confidence with every swim",
-  },
-  {
-    src: "/images/gallery/safety.jpg",
-    alt: "Students participating in a swimming lesson",
-    caption: "Learning in a safe and guided environment",
-  },
-  {
-    src: "/images/gallery/sessions.jpeg",
-    alt: "Students enjoying their swimming sessions",
-    caption: "Progress, confidence and enjoyment",
-  },
-  {
-    src: "/images/gallery/hero.jpg",
-    alt: "Swimming instructor guiding students",
-    caption: "Learning with qualified instructors",
-  },
-  {
-    src: "/images/gallery/coach.webp",
-    alt: "Students enjoying their swimming experience",
-    caption: "Every lesson is an opportunity to grow",
-  },
-  {
-    src: "/images/gallery/images.jpeg",
-    alt: "Instructor supporting students during swimming practice",
-    caption: "Developing skills one session at a time",
-  },
-];
-
 export default function AcademyGallery({
-  images = galleryImages,
+  images = [],
   title = "Life in the Water",
   description = "Moments of learning, confidence, progress and joy at Champs Swimming Academy.",
 }: AcademyGalleryProps) {
@@ -100,12 +63,27 @@ export default function AcademyGallery({
     };
   }, [activeIndex, closeModal, showNext, showPrevious]);
 
-  if (!images.length) return null;
+  if (!images.length) {
+    return (
+      <section className="bg-[#F7FAFC] py-20">
+        <div className="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
+          <Images className="mx-auto mb-4 text-[#087EAB]" size={36} />
+
+          <h2 className="text-2xl font-bold text-[#082F49]">
+            {title}
+          </h2>
+
+          <p className="mt-3 text-sm text-slate-500">
+            Our gallery moments are coming soon.
+          </p>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="relative overflow-hidden bg-[#F7FAFC] py-10 sm:py-14">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-
         {/* SECTION HEADER */}
         <div className="mb-7 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
           <div className="max-w-2xl">
@@ -133,7 +111,7 @@ export default function AcademyGallery({
         <div className="columns-2 gap-3 sm:columns-2 sm:gap-4 lg:columns-3 xl:columns-4">
           {images.map((image, index) => (
             <button
-              key={`${image.src}-${index}`}
+              key={image.id}
               type="button"
               onClick={() => setActiveIndex(index)}
               aria-label={`Open image ${index + 1}: ${image.alt}`}
@@ -149,7 +127,6 @@ export default function AcademyGallery({
 
               {/* HOVER OVERLAY */}
               <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-[#061D2C]/90 via-[#061D2C]/15 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-
                 <div className="flex items-end justify-between gap-2 p-3 sm:p-4">
                   <div className="min-w-0">
                     <p className="text-[9px] font-bold uppercase tracking-[0.18em] text-[#22B8C7]">
