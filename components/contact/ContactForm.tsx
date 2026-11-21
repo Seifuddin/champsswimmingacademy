@@ -1,17 +1,92 @@
+"use client";
 
 import Image from "next/image";
+import { useState, type FormEvent } from "react";
 import {
   ArrowUpRight,
   CheckCircle2,
   MessageCircle,
+  Loader2,
+  AlertCircle,
 } from "lucide-react";
+import { createClient } from "@/lib/supabase/client";
 
 export default function ContactForm() {
+  const supabase = createClient();
+
+  const [submitting, setSubmitting] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+
+    const fullName = String(formData.get("Full Name") || "").trim();
+    const email = String(formData.get("Email") || "").trim();
+    const phone = String(formData.get("Phone") || "").trim();
+    const programme = String(formData.get("Programme") || "").trim();
+    const subject = String(formData.get("Subject") || "").trim();
+    const message = String(formData.get("Message") || "").trim();
+
+    setSubmitting(true);
+    setSuccessMessage("");
+    setErrorMessage("");
+
+    try {
+      const { error } = await supabase.from("enquiries").insert({
+        full_name: fullName,
+        email,
+        phone: phone || "Not provided",
+        subject,
+        message: `Programme of Interest: ${programme}\n\n${message}`,
+        status: "new",
+      });
+
+      if (error) {
+  const errorDetails = [
+    error.message,
+    error.details,
+    error.hint,
+    error.code ? `Code: ${error.code}` : "",
+  ]
+    .filter(Boolean)
+    .join(" | ");
+
+  console.error("Enquiry submission failed:", errorDetails || String(error));
+
+  setErrorMessage(
+    errorDetails || "We couldn't send your enquiry right now. Please try again."
+  );
+
+  return;
+}
+
+      setSuccessMessage(
+        "Thank you for contacting Champs Swimming Academy! Your enquiry has been received. Our team will get back to you soon."
+      );
+
+      form.reset();
+    } catch (error) {
+      console.error("Unexpected enquiry error:", error);
+
+      setErrorMessage(
+        "Something went wrong while sending your enquiry. Please try again."
+      );
+    } finally {
+      setSubmitting(false);
+    }
+  }
+
   return (
-    <section id="contact-form" className="bg-[#F3F8FA] py-8 sm:py-10 lg:py-12">
+    <section
+      id="contact-form"
+      className="bg-[#F3F8FA] py-8 sm:py-10 lg:py-12"
+    >
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
         <div className="grid overflow-hidden border border-slate-200 bg-white lg:grid-cols-[0.78fr_1.22fr]">
-
           {/* Visual panel */}
           <div className="relative min-h-[260px] overflow-hidden bg-[#082F49] sm:min-h-[300px] lg:min-h-full">
             <Image
@@ -77,9 +152,7 @@ export default function ContactForm() {
             </div>
 
             <form
-              action="mailto:your-email@example.com"
-              method="POST"
-              encType="text/plain"
+              onSubmit={handleSubmit}
               className="space-y-3.5"
             >
               {/* Name & Email */}
@@ -97,7 +170,8 @@ export default function ContactForm() {
                     type="text"
                     placeholder="Your full name"
                     required
-                    className="w-full rounded-sm border border-slate-200 bg-[#F8FAFB] px-3.5 py-2.5 text-sm text-[#172B3A] outline-none transition placeholder:text-slate-400 focus:border-[#087EAB] focus:bg-white"
+                    disabled={submitting}
+                    className="w-full rounded-sm border border-slate-200 bg-[#F8FAFB] px-3.5 py-2.5 text-sm text-[#172B3A] outline-none transition placeholder:text-slate-400 focus:border-[#087EAB] focus:bg-white disabled:cursor-not-allowed disabled:opacity-60"
                   />
                 </div>
 
@@ -114,7 +188,8 @@ export default function ContactForm() {
                     type="email"
                     placeholder="Your email address"
                     required
-                    className="w-full rounded-sm border border-slate-200 bg-[#F8FAFB] px-3.5 py-2.5 text-sm text-[#172B3A] outline-none transition placeholder:text-slate-400 focus:border-[#087EAB] focus:bg-white"
+                    disabled={submitting}
+                    className="w-full rounded-sm border border-slate-200 bg-[#F8FAFB] px-3.5 py-2.5 text-sm text-[#172B3A] outline-none transition placeholder:text-slate-400 focus:border-[#087EAB] focus:bg-white disabled:cursor-not-allowed disabled:opacity-60"
                   />
                 </div>
               </div>
@@ -133,7 +208,8 @@ export default function ContactForm() {
                     name="Phone"
                     type="tel"
                     placeholder="+254..."
-                    className="w-full rounded-sm border border-slate-200 bg-[#F8FAFB] px-3.5 py-2.5 text-sm text-[#172B3A] outline-none transition placeholder:text-slate-400 focus:border-[#087EAB] focus:bg-white"
+                    disabled={submitting}
+                    className="w-full rounded-sm border border-slate-200 bg-[#F8FAFB] px-3.5 py-2.5 text-sm text-[#172B3A] outline-none transition placeholder:text-slate-400 focus:border-[#087EAB] focus:bg-white disabled:cursor-not-allowed disabled:opacity-60"
                   />
                 </div>
 
@@ -142,14 +218,16 @@ export default function ContactForm() {
                     htmlFor="programme"
                     className="mb-1.5 block text-xs font-semibold text-[#172B3A]"
                   >
-                    Programme of Interest <span className="text-[#087EAB]">*</span>
+                    Programme of Interest{" "}
+                    <span className="text-[#087EAB]">*</span>
                   </label>
                   <select
                     id="programme"
                     name="Programme"
                     defaultValue=""
                     required
-                    className="w-full rounded-sm border border-slate-200 bg-[#F8FAFB] px-3.5 py-2.5 text-sm text-slate-600 outline-none transition focus:border-[#087EAB] focus:bg-white"
+                    disabled={submitting}
+                    className="w-full rounded-sm border border-slate-200 bg-[#F8FAFB] px-3.5 py-2.5 text-sm text-slate-600 outline-none transition focus:border-[#087EAB] focus:bg-white disabled:cursor-not-allowed disabled:opacity-60"
                   >
                     <option value="" disabled>
                       Choose a programme
@@ -182,7 +260,8 @@ export default function ContactForm() {
                   type="text"
                   placeholder="Brief subject of your enquiry"
                   required
-                  className="w-full rounded-sm border border-slate-200 bg-[#F8FAFB] px-3.5 py-2.5 text-sm text-[#172B3A] outline-none transition placeholder:text-slate-400 focus:border-[#087EAB] focus:bg-white"
+                  disabled={submitting}
+                  className="w-full rounded-sm border border-slate-200 bg-[#F8FAFB] px-3.5 py-2.5 text-sm text-[#172B3A] outline-none transition placeholder:text-slate-400 focus:border-[#087EAB] focus:bg-white disabled:cursor-not-allowed disabled:opacity-60"
                 />
               </div>
 
@@ -200,18 +279,57 @@ export default function ContactForm() {
                   rows={3}
                   placeholder="Tell us a little more about what you need..."
                   required
-                  className="w-full resize-y rounded-sm border border-slate-200 bg-[#F8FAFB] px-3.5 py-2.5 text-sm text-[#172B3A] outline-none transition placeholder:text-slate-400 focus:border-[#087EAB] focus:bg-white"
+                  disabled={submitting}
+                  className="w-full resize-y rounded-sm border border-slate-200 bg-[#F8FAFB] px-3.5 py-2.5 text-sm text-[#172B3A] outline-none transition placeholder:text-slate-400 focus:border-[#087EAB] focus:bg-white disabled:cursor-not-allowed disabled:opacity-60"
                 />
               </div>
+
+              {/* Success message */}
+              {successMessage && (
+                <div
+                  role="status"
+                  className="flex items-start gap-3 border border-emerald-200 bg-emerald-50 p-3.5 text-sm leading-6 text-emerald-800"
+                >
+                  <CheckCircle2
+                    size={19}
+                    className="mt-0.5 shrink-0 text-emerald-600"
+                  />
+                  <p>{successMessage}</p>
+                </div>
+              )}
+
+              {/* Error message */}
+              {errorMessage && (
+                <div
+                  role="alert"
+                  className="flex items-start gap-3 border border-red-200 bg-red-50 p-3.5 text-sm leading-6 text-red-700"
+                >
+                  <AlertCircle
+                    size={19}
+                    className="mt-0.5 shrink-0 text-red-500"
+                  />
+                  <p>{errorMessage}</p>
+                </div>
+              )}
 
               {/* Submit */}
               <div className="flex flex-col gap-3 pt-1 sm:flex-row sm:items-center sm:justify-between">
                 <button
                   type="submit"
-                  className="inline-flex items-center justify-center gap-2 bg-[#087EAB] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#06698F]"
+                  disabled={submitting}
+                  className="inline-flex items-center justify-center gap-2 bg-[#087EAB] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#06698F] disabled:cursor-not-allowed disabled:opacity-70"
                 >
-                  Send Your Enquiry
-                  <ArrowUpRight size={17} />
+                  {submitting ? (
+                    <>
+                      Sending Enquiry...
+                      <Loader2 size={17} className="animate-spin" />
+                    </>
+                  ) : (
+                    <>
+                      Send Your Enquiry
+                      <ArrowUpRight size={17} />
+                    </>
+                  )}
                 </button>
 
                 <p className="text-[11px] leading-5 text-slate-500">
