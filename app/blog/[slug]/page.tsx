@@ -1,11 +1,19 @@
 
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+
 import ArticleHero from "@/components/blog/ArticleHero";
 import ArticleContent from "@/components/blog/ArticleContent";
+import CMSArticleContent from "@/components/blog/CMSArticleContent";
 import RelatedArticles from "@/components/blog/RelatedArticles";
-import BlogCTA from "@/components/blog/BlogCTA";
-import { blogArticles, getArticleBySlug } from "@/lib/blog";
+
+import {
+  blogArticles,
+  getArticleBySlug,
+  type BlogArticle,
+} from "@/lib/blog";
+
+import { getPublishedPosts } from "@/lib/blog/getPublishedPosts";
 
 type ArticlePageProps = {
   params: Promise<{ slug: string }>;
@@ -17,17 +25,68 @@ export function generateStaticParams() {
   }));
 }
 
+function getCMSArticleDisplay(post: {
+  title: string;
+  slug: string;
+  excerpt: string | null;
+  content: string;
+  featured_image: string | null;
+}): BlogArticle {
+  const wordCount = post.content
+    .replace(/<[^>]*>/g, " ")
+    .split(/\s+/)
+    .filter(Boolean).length;
+
+  const readTime = Math.max(1, Math.ceil(wordCount / 200));
+
+  return {
+    slug: post.slug,
+    title: post.title,
+    excerpt:
+      post.excerpt ||
+      "Discover swimming insights, practical tips and guidance from Champs Swimming Academy.",
+    category: "Swimming & Water Safety",
+    readTime: `${readTime} min read`,
+    image: post.featured_image || "/images/blog/hero.jpg",
+    imageAlt: post.title,
+  };
+}
+
 export async function generateMetadata({
   params,
 }: ArticlePageProps): Promise<Metadata> {
   const { slug } = await params;
-  const article = getArticleBySlug(slug);
 
-  if (!article) {
+  // Existing static articles
+  const staticArticle = getArticleBySlug(slug);
+
+  if (staticArticle) {
+    return {
+      title: `${staticArticle.title} | Champs Swimming Academy`,
+      description: staticArticle.excerpt,
+      alternates: {
+        canonical: `/blog/${staticArticle.slug}`,
+      },
+      openGraph: {
+        title: staticArticle.title,
+        description: staticArticle.excerpt,
+        images: [staticArticle.image],
+        type: "article",
+      },
+    };
+  }
+
+  // Published CMS articles
+  const cmsPosts = await getPublishedPosts();
+  const cmsPost = cmsPosts.find((post) => post.slug === slug);
+
+  if (!cmsPost) {
     return {
       title: "Article Not Found | Champs Swimming Academy",
     };
   }
+
+  const article = getCMSArticleDisplay(cmsPost);
 
   return {
     title: `${article.title} | Champs Swimming Academy`,
@@ -48,12 +107,24 @@ export default async function ArticlePage({
   params,
 }: ArticlePageProps) {
   const { slug } = await params;
-  const article = getArticleBySlug(slug);
 
-  if (!article) {
+  // Check existing static articles first
+  const staticArticle = getArticleBySlug(slug);
+
+  // Fetch CMS articles
+  const cmsPosts = staticArticle ? [] : await getPublishedPosts();
+
+  const cmsPost = cmsPosts.find((post) => post.slug === slug);
+
+  // Neither static nor published CMS article exists
+  if (!staticArticle && !cmsPost) {
     notFound();
   }
 
+  // Use the correct article information
+  const article = staticArticle || getCMSArticleDisplay(cmsPost!);
+
+  // Existing related article system
   const relatedArticles = blogArticles
     .filter(
       (item) =>
@@ -74,13 +145,16 @@ export default async function ArticlePage({
       <ArticleHero article={article} />
 
       <div className="mx-auto max-w-7xl px-4 py-9 sm:px-6 sm:py-12 lg:px-8">
-        <ArticleContent article={article} />
+        {staticArticle ? (
+          <ArticleContent article={staticArticle} />
+        ) : (
+          <CMSArticleContent content={cmsPost!.content} />
+        )}
 
         <div className="mt-12 border-t border-slate-200 pt-9 sm:mt-16 sm:pt-12">
           <RelatedArticles articles={relatedArticles} />
         </div>
       </div>
-
     </main>
   );
 }
