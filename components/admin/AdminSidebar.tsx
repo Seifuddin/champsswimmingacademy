@@ -9,9 +9,6 @@ import {
   Images,
   MessageSquare,
   FileText,
-  CalendarDays,
-  Settings,
-  Users,
   Waves,
   LogOut,
   Menu,
@@ -25,18 +22,16 @@ const navigation = [
   { label: "Gallery", href: "/admin/gallery", icon: Images },
   { label: "Enquiries", href: "/admin/enquiries", icon: MessageSquare },
   { label: "Blog", href: "/admin/blog", icon: FileText },
-  { label: "Events", href: "/admin/events", icon: CalendarDays },
-];
-
-const managementNavigation = [
-  { label: "Site Settings", href: "/admin/settings", icon: Settings },
-  { label: "Administrators", href: "/admin/users", icon: Users },
 ];
 
 type NavigationItem = {
   label: string;
   href: string;
-  icon: React.ComponentType<{ size?: number; strokeWidth?: number; className?: string }>;
+  icon: React.ComponentType<{
+    size?: number;
+    strokeWidth?: number;
+    className?: string;
+  }>;
 };
 
 export default function AdminSidebar() {
@@ -79,23 +74,30 @@ export default function AdminSidebar() {
           key={item.href}
           href={item.href}
           onClick={() => setMobileOpen(false)}
-          className={`group flex items-center justify-between rounded-lg px-3 py-2.5 transition-all ${
+          aria-current={active ? "page" : undefined}
+          className={`group flex min-h-12 items-center justify-between rounded-xl px-3.5 transition-all duration-200 ${
             active
-              ? "bg-[#143d59] text-white"
-              : "text-slate-400 hover:bg-white/[0.05] hover:text-white"
+              ? "bg-[#143d59] text-white shadow-sm shadow-black/10"
+              : "text-slate-400 hover:bg-white/[0.06] hover:text-white"
           }`}
         >
           <span className="flex items-center gap-3">
             <Icon
-              size={18}
+              size={19}
               strokeWidth={active ? 2.2 : 1.8}
-              className={active ? "text-cyan-300" : "text-slate-400"}
+              className={
+                active
+                  ? "text-cyan-300"
+                  : "text-slate-400 group-hover:text-cyan-200"
+              }
             />
 
             <span className="text-[13px] font-medium">{item.label}</span>
           </span>
 
-          {active && <ChevronRight size={15} className="text-cyan-300" />}
+          {active && (
+            <ChevronRight size={16} className="text-cyan-300" />
+          )}
         </Link>
       );
     });
@@ -125,14 +127,8 @@ export default function AdminSidebar() {
           Workspace
         </p>
 
-        <nav className="space-y-1">{renderNavigation(navigation)}</nav>
-
-        <p className="mb-3 mt-8 px-3 text-[10px] font-semibold uppercase tracking-[0.17em] text-slate-500">
-          Management
-        </p>
-
-        <nav className="space-y-1">
-          {renderNavigation(managementNavigation)}
+        <nav className="space-y-1.5">
+          {renderNavigation(navigation)}
         </nav>
 
         {/* Workspace status */}
@@ -151,14 +147,14 @@ export default function AdminSidebar() {
       </div>
 
       {/* Sign out */}
-      <div className="shrink-0 border-t border-white/[0.08] p-3">
+      <div className="shrink-0 border-t border-white/[0.08] p-4">
         <button
           type="button"
           onClick={handleLogout}
           disabled={loggingOut}
-          className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-[13px] font-medium text-slate-400 transition hover:bg-red-500/10 hover:text-red-300 disabled:opacity-50"
+          className="flex min-h-11 w-full items-center gap-3 rounded-xl px-3.5 text-[13px] font-medium text-slate-400 transition hover:bg-red-500/10 hover:text-red-300 disabled:opacity-50"
         >
-          <LogOut size={17} />
+          <LogOut size={18} />
           {loggingOut ? "Signing out..." : "Sign out"}
         </button>
       </div>
@@ -172,7 +168,8 @@ export default function AdminSidebar() {
         type="button"
         onClick={() => setMobileOpen(true)}
         aria-label="Open admin navigation"
-        className="fixed left-4 top-3.5 z-40 flex h-10 w-10 items-center justify-center rounded-lg border border-slate-200 bg-white text-[#0b2940] shadow-sm lg:hidden"
+        aria-expanded={mobileOpen}
+        className="fixed left-4 top-4 z-40 flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 bg-white text-[#0b2940] shadow-sm transition hover:bg-slate-50 lg:hidden"
       >
         <Menu size={20} />
       </button>
@@ -189,17 +186,17 @@ export default function AdminSidebar() {
             type="button"
             aria-label="Close navigation overlay"
             onClick={() => setMobileOpen(false)}
-            className="absolute inset-0 bg-slate-950/60 backdrop-blur-sm"
+            className="absolute inset-0 bg-slate-950/65 backdrop-blur-sm"
           />
 
-          <aside className="absolute inset-y-0 left-0 flex w-[280px] max-w-[85vw] flex-col bg-[#0b2033] shadow-2xl">
+          <aside className="absolute inset-y-0 left-0 flex w-[290px] max-w-[88vw] flex-col bg-[#0b2033] shadow-2xl animate-in slide-in-from-left duration-200">
             <button
               type="button"
               onClick={() => setMobileOpen(false)}
               aria-label="Close navigation"
-              className="absolute right-3 top-4 z-10 flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 hover:bg-white/10 hover:text-white"
+              className="absolute right-4 top-5 z-10 flex h-9 w-9 items-center justify-center rounded-xl text-slate-400 transition hover:bg-white/10 hover:text-white"
             >
-              <X size={18} />
+              <X size={19} />
             </button>
 
             {sidebarContent}
