@@ -17,7 +17,7 @@ export default function AdminDashboardShell({
 }: AdminDashboardShellProps) {
   return (
     <div className="min-h-screen overflow-x-clip bg-[#f5f7fa]">
-      <AdminSidebar />
+      <AdminSidebar role={role} />
 
       <div className="min-h-screen min-w-0 lg:pl-[250px]">
         <AdminHeader

@@ -1,4 +1,3 @@
-
 "use client";
 
 import Link from "next/link";
@@ -14,6 +13,7 @@ import {
   Menu,
   X,
   ChevronRight,
+  Users,
 } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 
@@ -34,7 +34,11 @@ type NavigationItem = {
   }>;
 };
 
-export default function AdminSidebar() {
+type AdminSidebarProps = {
+  role: string;
+};
+
+export default function AdminSidebar({ role }: AdminSidebarProps) {
   const pathname = usePathname();
   const router = useRouter();
 
@@ -42,6 +46,19 @@ export default function AdminSidebar() {
   const [loggingOut, setLoggingOut] = useState(false);
 
   const supabase = createClient();
+
+  // Only administrators can see the admin management section
+  const visibleNavigation: NavigationItem[] =
+    role === "admin"
+      ? [
+          ...navigation,
+          {
+            label: "Administrators",
+            href: "/admin/users",
+            icon: Users,
+          },
+        ]
+      : navigation;
 
   function isActive(href: string) {
     if (href === "/admin") return pathname === "/admin";
@@ -128,7 +145,7 @@ export default function AdminSidebar() {
         </p>
 
         <nav className="space-y-1.5">
-          {renderNavigation(navigation)}
+          {renderNavigation(visibleNavigation)}
         </nav>
 
         {/* Workspace status */}
