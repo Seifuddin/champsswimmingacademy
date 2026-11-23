@@ -17,11 +17,12 @@ export type CMSBlogPost = {
 export async function getPublishedPosts(): Promise<CMSBlogPost[]> {
   const supabase = await createClient();
 
-  const { data, error } = await supabase
+    const { data, error } = await supabase
     .from("blog_posts")
     .select(
       "id, title, slug, excerpt, content, featured_image, author, status, published_at, created_at, updated_at"
     )
+    .is("deleted_at", null)
     .eq("status", "published")
     .not("published_at", "is", null)
     .lte("published_at", new Date().toISOString())
