@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import {
   ArrowLeft,
   FileText,
@@ -12,8 +12,11 @@ import {
   Eye,
   X,
   Calendar,
+  Upload,
+  Trash2,
 } from "lucide-react";
 import RichTextEditor from "./RichTextEditor";
+import { createClient } from "@/lib/supabase/client";
 
 export type BlogEditorData = {
   title: string;
@@ -31,12 +34,22 @@ type BlogEditorProps = {
   initialData?: BlogEditorData | null;
 };
 
+const MAX_IMAGE_SIZE = 5 * 1024 * 1024;
+
+const ALLOWED_IMAGE_TYPES = [
+  "image/jpeg",
+  "image/png",
+  "image/webp",
+];
+
 export default function BlogEditor({
   onCancel,
   onSave,
   initialData,
 }: BlogEditorProps) {
   const isEditing = Boolean(initialData);
+
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const [title, setTitle] = useState(initialData?.title ?? "");
   const [slug, setSlug] = useState(initialData?.slug ?? "");
@@ -51,7 +64,9 @@ export default function BlogEditor({
   );
 
   const [saving, setSaving] = useState(false);
+  const [uploadingImage, setUploadingImage] = useState(false);
   const [error, setError] = useState("");
+  const [imageError, setImageError] = useState("");
   const [showPreview, setShowPreview] = useState(false);
 
   function generateSlug(value: string) {
@@ -76,8 +91,81 @@ export default function BlogEditor({
     setSlug(generateSlug(value));
   }
 
+  async function handleImageUpload(
+    event: React.ChangeEvent<HTMLInputElement>
+  ) {
+    const file = event.target.files?.[0];
+
+    // Allow selecting the same file again
+    event.target.value = "";
+
+    if (!file) return;
+
+    setImageError("");
+
+    // Validate image type
+    if (!ALLOWED_IMAGE_TYPES.includes(file.type)) {
+      setImageError("Please select a JPG, PNG or WebP image.");
+      return;
+    }
+
+    // Validate file size
+    if (file.size > MAX_IMAGE_SIZE) {
+      setImageError("Image must be 5 MB or smaller.");
+      return;
+    }
+
+    try {
+      setUploadingImage(true);
+
+      const supabase = createClient();
+
+      const fileExtension = file.name.split(".").pop()?.toLowerCase() || "jpg";
+
+      const fileName = `featured/${Date.now()}-${crypto.randomUUID()}.${fileExtension}`;
+
+      const { error: uploadError } = await supabase.storage
+        .from("blog-images")
+        .upload(fileName, file, {
+          cacheControl: "3600",
+          contentType: file.type,
+          upsert: false,
+        });
+
+      if (uploadError) {
+        console.error("Blog image upload error:", uploadError);
+        throw uploadError;
+      }
+
+      const { data } = supabase.storage
+        .from("blog-images")
+        .getPublicUrl(fileName);
+
+      setFeaturedImage(data.publicUrl);
+      setImageError("");
+    } catch (err) {
+      console.error("Featured image upload failed:", err);
+
+      setImageError(
+        "Unable to upload the image. Please check your connection and try again."
+      );
+    } finally {
+      setUploadingImage(false);
+    }
+  }
+
+  function handleRemoveImage() {
+    setFeaturedImage("");
+    setImageError("");
+  }
+
   async function handleSave(status: "draft" | "published") {
     setError("");
+
+    if (uploadingImage) {
+      setError("Please wait for the image upload to finish.");
+      return;
+    }
 
     if (!title.trim()) {
       setError("Please enter an article title.");
@@ -109,6 +197,7 @@ export default function BlogEditor({
       await onSave(articleData);
     } catch (err) {
       console.error("Blog save error:", err);
+
       setError(
         isEditing
           ? "Unable to update the article. Please try again."
@@ -240,10 +329,7 @@ export default function BlogEditor({
                     Article Content <span className="text-red-500">*</span>
                   </label>
 
-                  <RichTextEditor
-                    value={content}
-                    onChange={setContent}
-                  />
+                  <RichTextEditor value={content} onChange={setContent} />
 
                   <p className="mt-2 text-xs leading-5 text-slate-500">
                     Format your article with headings, bold text, lists, links
@@ -285,10 +371,10 @@ export default function BlogEditor({
                 <button
                   type="button"
                   onClick={() => handleSave("draft")}
-                  disabled={saving}
+                  disabled={saving || uploadingImage}
                   className="flex w-full items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-medium text-slate-700 transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-60"
                 >
-                  {saving ? (
+                  {saving || uploadingImage ? (
                     <Loader2 size={16} className="animate-spin" />
                   ) : (
                     <Save size={16} />
@@ -299,10 +385,10 @@ export default function BlogEditor({
                 <button
                   type="button"
                   onClick={() => handleSave("published")}
-                  disabled={saving}
+                  disabled={saving || uploadingImage}
                   className="flex w-full items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 py-3 text-sm font-medium text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-60"
                 >
-                  {saving ? (
+                  {saving || uploadingImage ? (
                     <Loader2 size={16} className="animate-spin" />
                   ) : (
                     <Send size={16} />
@@ -317,7 +403,7 @@ export default function BlogEditor({
               </p>
             </div>
 
-            {/* Featured Image */}
+            {/* Featured Image Upload */}
             <div className="rounded-2xl border border-slate-200 bg-white p-5">
               <div className="mb-4 flex items-center gap-2">
                 <ImageIcon size={18} className="text-blue-600" />
@@ -326,24 +412,49 @@ export default function BlogEditor({
                 </h2>
               </div>
 
-              <label
-                htmlFor="blog-image"
-                className="mb-2 block text-sm font-medium text-slate-700"
-              >
-                Image URL
-              </label>
-
+              {/* Hidden File Input */}
               <input
-                id="blog-image"
-                type="url"
-                value={featuredImage}
-                onChange={(e) => setFeaturedImage(e.target.value)}
-                placeholder="https://example.com/image.jpg"
-                className="w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm text-slate-900 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+                ref={fileInputRef}
+                type="file"
+                accept="image/jpeg,image/png,image/webp"
+                onChange={handleImageUpload}
+                className="hidden"
               />
 
+              {/* Upload Button */}
+              <button
+                type="button"
+                onClick={() => fileInputRef.current?.click()}
+                disabled={uploadingImage}
+                className="flex w-full items-center justify-center gap-2 rounded-xl border border-blue-200 bg-blue-50 px-4 py-3 text-sm font-medium text-blue-700 transition hover:bg-blue-100 disabled:cursor-not-allowed disabled:opacity-60"
+              >
+                {uploadingImage ? (
+                  <>
+                    <Loader2 size={17} className="animate-spin" />
+                    Uploading Image...
+                  </>
+                ) : (
+                  <>
+                    <Upload size={17} />
+                    {featuredImage ? "Replace Image" : "Upload Image"}
+                  </>
+                )}
+              </button>
+
+              <p className="mt-2 text-xs leading-5 text-slate-500">
+                JPG, PNG or WebP · Maximum 5 MB
+              </p>
+
+              {/* Upload Error */}
+              {imageError && (
+                <div className="mt-3 rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-xs leading-5 text-red-700">
+                  {imageError}
+                </div>
+              )}
+
+              {/* Image Preview */}
               {featuredImage && (
-                <div className="mt-3 overflow-hidden rounded-xl border border-slate-200">
+                <div className="mt-4 overflow-hidden rounded-xl border border-slate-200">
                   <img
                     src={featuredImage}
                     alt="Featured image preview"
@@ -352,13 +463,46 @@ export default function BlogEditor({
                       e.currentTarget.style.display = "none";
                     }}
                   />
+
+                  <div className="flex items-center justify-between gap-2 border-t border-slate-200 bg-slate-50 px-3 py-2">
+                    <span className="truncate text-xs text-slate-500">
+                      Featured image selected
+                    </span>
+
+                    <button
+                      type="button"
+                      onClick={handleRemoveImage}
+                      disabled={uploadingImage}
+                      className="flex shrink-0 items-center gap-1 rounded-lg px-2 py-1 text-xs font-medium text-red-600 transition hover:bg-red-50 disabled:opacity-50"
+                    >
+                      <Trash2 size={13} />
+                      Remove
+                    </button>
+                  </div>
                 </div>
               )}
 
-              <p className="mt-2 text-xs leading-5 text-slate-500">
-                We will add image uploading directly from your computer in a later
-                step.
-              </p>
+              {/* Manual Image URL */}
+              <div className="mt-5 border-t border-slate-200 pt-4">
+                <label
+                  htmlFor="blog-image"
+                  className="mb-2 block text-sm font-medium text-slate-700"
+                >
+                  Or use an image URL
+                </label>
+
+                <input
+                  id="blog-image"
+                  type="url"
+                  value={featuredImage}
+                  onChange={(e) => {
+                    setFeaturedImage(e.target.value);
+                    setImageError("");
+                  }}
+                  placeholder="https://example.com/image.jpg"
+                  className="w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm text-slate-900 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+                />
+              </div>
             </div>
 
             {/* Author */}
@@ -467,7 +611,9 @@ export default function BlogEditor({
                 <div
                   className="blog-preview-content max-w-none text-base leading-8 text-slate-700"
                   dangerouslySetInnerHTML={{
-                    __html: content || "<p>Your article content will appear here once you start writing.</p>",
+                    __html:
+                      content ||
+                      "<p>Your article content will appear here once you start writing.</p>",
                   }}
                 />
               </article>
