@@ -183,7 +183,6 @@ export default function GalleryManager() {
         `Uploading image ${index + 1} of ${selectedFiles.length}...`
       );
 
-      const extension = file.name.split(".").pop()?.toLowerCase() || "jpg";
       const safeName = file.name
         .replace(/\s+/g, "-")
         .replace(/[^a-zA-Z0-9._-]/g, "");
@@ -349,9 +348,9 @@ export default function GalleryManager() {
   }
 
   return (
-    <div className="space-y-5">
+    <div className="min-w-0 space-y-4 sm:space-y-5">
       {/* Page heading */}
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-blue-600">
             <Images size={15} />
@@ -369,7 +368,7 @@ export default function GalleryManager() {
 
         <button
           onClick={openUpload}
-          className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#173b67] px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-[#102d50]"
+          className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-xl bg-[#173b67] px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-[#102d50] sm:w-auto"
         >
           <Upload size={17} />
           Upload images
@@ -392,7 +391,7 @@ export default function GalleryManager() {
       )}
 
       {/* Statistics */}
-      <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+      <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-3">
         <StatCard
           label="Total images"
           value={images.length}
@@ -414,7 +413,7 @@ export default function GalleryManager() {
       </div>
 
       {/* Gallery controls */}
-      <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+      <div className="rounded-2xl border border-slate-200 bg-white p-3 shadow-sm sm:p-4">
         <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
           <div className="relative w-full lg:max-w-sm">
             <Search
@@ -429,7 +428,7 @@ export default function GalleryManager() {
             />
           </div>
 
-          <div className="flex flex-wrap gap-2">
+          <div className="grid grid-cols-2 gap-2 sm:flex">
             <FilterSelect
               value={statusFilter}
               onChange={setStatusFilter}
@@ -454,7 +453,7 @@ export default function GalleryManager() {
           </div>
         </div>
 
-        <div className="mt-3 flex items-center justify-between border-t border-slate-100 pt-3">
+        <div className="mt-3 flex flex-wrap items-center justify-between gap-2 border-t border-slate-100 pt-3">
           <p className="text-xs text-slate-500">
             Showing{" "}
             <span className="font-semibold text-slate-800">
@@ -513,7 +512,7 @@ export default function GalleryManager() {
           )}
         </div>
       ) : (
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
+        <div className="grid grid-cols-1 gap-3 min-[480px]:grid-cols-2 sm:gap-4 xl:grid-cols-3 2xl:grid-cols-4">
           {filteredImages.map((image) => (
             <article
               key={image.id}
@@ -547,7 +546,7 @@ export default function GalleryManager() {
               </div>
 
               {/* Details */}
-              <div className="p-4">
+              <div className="p-3 sm:p-4">
                 <div className="min-w-0">
                   <h3 className="truncate text-sm font-semibold text-slate-900">
                     {image.title}
@@ -563,11 +562,11 @@ export default function GalleryManager() {
                 </div>
 
                 {/* Actions */}
-                <div className="mt-3 grid grid-cols-3 gap-2 border-t border-slate-100 pt-3">
+                <div className="mt-3 grid grid-cols-3 gap-1.5 border-t border-slate-100 pt-3 sm:gap-2">
                   <button
                     disabled={busyImageId === image.id}
                     onClick={() => togglePublish(image)}
-                    className={`inline-flex items-center justify-center gap-1.5 rounded-lg px-2 py-2 text-xs font-semibold transition disabled:opacity-50 ${
+                    className={`inline-flex min-h-10 items-center justify-center gap-1 rounded-lg px-1.5 py-2 text-[11px] font-semibold transition disabled:opacity-50 sm:gap-1.5 sm:px-2 sm:text-xs ${
                       image.is_published
                         ? "bg-amber-50 text-amber-700 hover:bg-amber-100"
                         : "bg-emerald-50 text-emerald-700 hover:bg-emerald-100"
@@ -585,7 +584,7 @@ export default function GalleryManager() {
 
                   <button
                     onClick={() => setEditingImage({ ...image })}
-                    className="inline-flex items-center justify-center gap-1.5 rounded-lg bg-slate-100 px-2 py-2 text-xs font-semibold text-slate-700 transition hover:bg-slate-200"
+                    className="inline-flex min-h-10 items-center justify-center gap-1 rounded-lg bg-slate-100 px-1.5 py-2 text-[11px] font-semibold text-slate-700 transition hover:bg-slate-200 sm:gap-1.5 sm:px-2 sm:text-xs"
                   >
                     <Pencil size={14} />
                     Edit
@@ -594,7 +593,7 @@ export default function GalleryManager() {
                   <button
                     disabled={deletingImageId === image.id}
                     onClick={() => deleteImage(image)}
-                    className="inline-flex items-center justify-center gap-1.5 rounded-lg bg-red-50 px-2 py-2 text-xs font-semibold text-red-600 transition hover:bg-red-100 disabled:opacity-50"
+                    className="inline-flex min-h-10 items-center justify-center gap-1 rounded-lg bg-red-50 px-1.5 py-2 text-[11px] font-semibold text-red-600 transition hover:bg-red-100 disabled:opacity-50 sm:gap-1.5 sm:px-2 sm:text-xs"
                   >
                     {deletingImageId === image.id ? (
                       <Loader2 size={14} className="animate-spin" />
@@ -904,14 +903,14 @@ function StatCard({
   };
 
   return (
-    <div className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-      <div className={`flex size-11 shrink-0 items-center justify-center rounded-xl ${colors[color]}`}>
+    <div className="flex min-w-0 items-center gap-2.5 rounded-xl border border-slate-200 bg-white p-3 shadow-sm sm:gap-3 sm:rounded-2xl sm:p-4">
+      <div className={`flex size-9 shrink-0 items-center justify-center rounded-lg sm:size-11 sm:rounded-xl ${colors[color]}`}>
         {icon}
       </div>
 
-      <div>
-        <p className="text-xs font-medium text-slate-500">{label}</p>
-        <p className="mt-0.5 text-2xl font-bold tracking-tight text-slate-900">
+      <div className="min-w-0">
+        <p className="text-[11px] font-medium leading-tight text-slate-500 sm:text-xs">{label}</p>
+        <p className="mt-0.5 text-xl font-bold tracking-tight text-slate-900 sm:text-2xl">
           {value}
         </p>
       </div>
@@ -933,11 +932,11 @@ function FilterSelect({
   options: { value: string; label: string }[];
 }) {
   return (
-    <div className="relative">
+    <div className="relative min-w-0">
       <select
         value={value}
         onChange={(event) => onChange(event.target.value)}
-        className="appearance-none rounded-xl border border-slate-200 bg-white py-2.5 pl-3 pr-9 text-sm font-medium text-slate-600 outline-none transition hover:border-slate-300 focus:border-blue-400 focus:ring-2 focus:ring-blue-100"
+        className="w-full appearance-none rounded-xl border border-slate-200 bg-white py-2.5 pl-3 pr-8 text-xs font-medium text-slate-600 outline-none transition hover:border-slate-300 focus:border-blue-400 focus:ring-2 focus:ring-blue-100 sm:text-sm"
       >
         {options.map((option) => (
           <option key={option.value} value={option.value}>
@@ -966,12 +965,12 @@ function Modal({
 }) {
   return (
     <div
-      className="fixed inset-0 z-[100] flex items-center justify-center overflow-y-auto bg-slate-950/50 p-3 backdrop-blur-[2px] sm:p-6"
+      className="fixed inset-0 z-[100] flex items-start justify-center overflow-y-auto bg-slate-950/50 p-2 backdrop-blur-[2px] sm:items-center sm:p-6"
       onMouseDown={(event) => {
         if (event.target === event.currentTarget) onClose();
       }}
     >
-      <div className="my-auto w-full max-w-lg rounded-2xl border border-slate-200 bg-white p-5 shadow-2xl sm:p-6">
+      <div className="my-auto max-h-[calc(100dvh-1rem)] w-full max-w-lg overflow-y-auto rounded-2xl border border-slate-200 bg-white p-4 shadow-2xl sm:max-h-[calc(100dvh-3rem)] sm:rounded-2xl sm:p-6">
         {children}
       </div>
     </div>
